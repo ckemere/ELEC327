@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -6145,7 +6145,7 @@ PDIP (N) 20 Pin Package &lt;br&gt;</description>
 </class>
 </classes>
 <parts>
-<part name="U$2" library="ELEC327" deviceset="MSP430G2XX3" device="PDIP"/>
+<part name="U$2" library="ELEC327" deviceset="MSP430G2XX3" device="TSSOP" value="MSP430G2XX3TSSOP"/>
 <part name="JP1" library="SparkFun" deviceset="M04" device="LOCK"/>
 <part name="R1" library="resistor" deviceset="R-US_" device="R1206"/>
 <part name="R2" library="resistor" deviceset="R-US_" device="R1206"/>
