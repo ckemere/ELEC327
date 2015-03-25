@@ -8313,18 +8313,6 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <wire x1="91.44" y1="7.62" x2="83.82" y2="7.62" width="0.1524" layer="91"/>
 <label x="86.36" y="7.62" size="1.778" layer="95"/>
 </segment>
-<segment>
-<pinref part="U$6" gate="G$1" pin="2"/>
-<wire x1="-38.1" y1="27.94" x2="-43.18" y2="27.94" width="0.1524" layer="91"/>
-<pinref part="BAT1" gate="G$1" pin="+"/>
-<wire x1="-43.18" y1="27.94" x2="-53.34" y2="27.94" width="0.1524" layer="91"/>
-<wire x1="-53.34" y1="27.94" x2="-53.34" y2="25.4" width="0.1524" layer="91"/>
-<wire x1="-43.18" y1="27.94" x2="-43.18" y2="20.32" width="0.1524" layer="91"/>
-<junction x="-43.18" y="27.94"/>
-<pinref part="U$6" gate="G$1" pin="5"/>
-<wire x1="-38.1" y1="20.32" x2="-43.18" y2="20.32" width="0.1524" layer="91"/>
-<label x="-50.8" y="25.4" size="1.778" layer="95"/>
-</segment>
 </net>
 <net name="N$13" class="0">
 <segment>
@@ -8440,6 +8428,20 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <wire x1="58.42" y1="2.54" x2="73.66" y2="2.54" width="0.1524" layer="91"/>
 <wire x1="73.66" y1="2.54" x2="73.66" y2="7.62" width="0.1524" layer="91"/>
 <label x="63.5" y="0" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="BAT_VCC" class="0">
+<segment>
+<pinref part="U$6" gate="G$1" pin="2"/>
+<wire x1="-38.1" y1="27.94" x2="-43.18" y2="27.94" width="0.1524" layer="91"/>
+<pinref part="BAT1" gate="G$1" pin="+"/>
+<wire x1="-43.18" y1="27.94" x2="-53.34" y2="27.94" width="0.1524" layer="91"/>
+<wire x1="-53.34" y1="27.94" x2="-53.34" y2="25.4" width="0.1524" layer="91"/>
+<wire x1="-43.18" y1="27.94" x2="-43.18" y2="20.32" width="0.1524" layer="91"/>
+<junction x="-43.18" y="27.94"/>
+<pinref part="U$6" gate="G$1" pin="5"/>
+<wire x1="-38.1" y1="20.32" x2="-43.18" y2="20.32" width="0.1524" layer="91"/>
+<label x="-50.8" y="25.4" size="1.778" layer="95"/>
 </segment>
 </net>
 </nets>
