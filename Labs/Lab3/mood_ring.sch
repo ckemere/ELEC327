@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="6.5.0">
+<eagle version="7.3.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -5787,87 +5787,6 @@ Metric Code Size 5664</description>
 </deviceset>
 </devicesets>
 </library>
-<library name="adafruit">
-<packages>
-<package name="RGBLED5050">
-<wire x1="-2.5" y1="2.5" x2="2.5" y2="2.5" width="0.127" layer="21"/>
-<wire x1="2.5" y1="2.5" x2="2.5" y2="-1.5" width="0.127" layer="21"/>
-<wire x1="2.5" y1="-1.5" x2="2.5" y2="-2.5" width="0.127" layer="21"/>
-<wire x1="2.5" y1="-2.5" x2="1.5" y2="-2.5" width="0.127" layer="21"/>
-<wire x1="1.5" y1="-2.5" x2="-2.5" y2="-2.5" width="0.127" layer="21"/>
-<wire x1="-2.5" y1="-2.5" x2="-2.5" y2="2.5" width="0.127" layer="21"/>
-<wire x1="1.5" y1="-2.5" x2="2.5" y2="-1.5" width="0.127" layer="21"/>
-<circle x="2.934" y="-2.688" radius="0.1414" width="0.127" layer="21"/>
-<circle x="0" y="0" radius="2.1" width="0.127" layer="21"/>
-<smd name="1" x="-2" y="1.7" dx="2" dy="1.1" layer="1"/>
-<smd name="2" x="-2" y="0" dx="2" dy="1.1" layer="1"/>
-<smd name="3" x="-2" y="-1.7" dx="2" dy="1.1" layer="1"/>
-<smd name="4" x="2" y="-1.7" dx="2" dy="1.1" layer="1"/>
-<smd name="5" x="2" y="0" dx="2" dy="1.1" layer="1"/>
-<smd name="6" x="2" y="1.7" dx="2" dy="1.1" layer="1"/>
-<text x="-1.7" y="2.9" size="1.27" layer="25" font="vector">&gt;NAME</text>
-<text x="-2" y="-4.1" size="1.27" layer="27" font="vector">&gt;VALUE</text>
-</package>
-</packages>
-<symbols>
-<symbol name="RGBLED">
-<wire x1="1.27" y1="5.08" x2="-5.08" y2="5.08" width="0.254" layer="94"/>
-<wire x1="1.27" y1="0" x2="-5.08" y2="0" width="0.254" layer="94"/>
-<wire x1="1.27" y1="-5.08" x2="-5.08" y2="-5.08" width="0.254" layer="94"/>
-<wire x1="1.27" y1="6.35" x2="1.27" y2="5.08" width="0.254" layer="94"/>
-<wire x1="1.27" y1="5.08" x2="1.27" y2="3.81" width="0.254" layer="94"/>
-<wire x1="1.27" y1="1.27" x2="1.27" y2="0" width="0.254" layer="94"/>
-<wire x1="1.27" y1="0" x2="1.27" y2="-1.27" width="0.254" layer="94"/>
-<wire x1="1.27" y1="-6.35" x2="1.27" y2="-5.08" width="0.254" layer="94"/>
-<wire x1="1.27" y1="-5.08" x2="1.27" y2="-3.81" width="0.254" layer="94"/>
-<wire x1="1.27" y1="5.08" x2="-1.27" y2="6.35" width="0.254" layer="94"/>
-<wire x1="-1.27" y1="6.35" x2="-1.27" y2="3.81" width="0.254" layer="94"/>
-<wire x1="-1.27" y1="3.81" x2="1.27" y2="5.08" width="0.254" layer="94"/>
-<wire x1="1.27" y1="0" x2="-1.27" y2="1.27" width="0.254" layer="94"/>
-<wire x1="-1.27" y1="1.27" x2="-1.27" y2="-1.27" width="0.254" layer="94"/>
-<wire x1="-1.27" y1="-1.27" x2="1.27" y2="0" width="0.254" layer="94"/>
-<wire x1="1.27" y1="-5.08" x2="-1.27" y2="-3.81" width="0.254" layer="94"/>
-<wire x1="-1.27" y1="-3.81" x2="-1.27" y2="-6.35" width="0.254" layer="94"/>
-<wire x1="-1.27" y1="-6.35" x2="1.27" y2="-5.08" width="0.254" layer="94"/>
-<wire x1="1.27" y1="5.08" x2="5.08" y2="5.08" width="0.254" layer="94"/>
-<wire x1="1.27" y1="-5.08" x2="5.08" y2="-5.08" width="0.254" layer="94"/>
-<wire x1="5.08" y1="0" x2="1.27" y2="0" width="0.254" layer="94"/>
-<text x="-3.81" y="8.89" size="1.778" layer="95">&gt;NAME</text>
-<text x="2.54" y="-3.81" size="1.778" layer="94">Red</text>
-<text x="2.54" y="1.27" size="1.778" layer="94">Grn</text>
-<text x="2.54" y="6.35" size="1.778" layer="94">Blue</text>
-<pin name="BLUE_C" x="5.08" y="5.08" visible="off" length="point" rot="R180"/>
-<pin name="GREEN_C" x="5.08" y="0" visible="off" length="point" rot="R180"/>
-<pin name="GREEN_A" x="-5.08" y="0" visible="off" length="point"/>
-<pin name="RED_C" x="5.08" y="-5.08" visible="off" length="point" rot="R180"/>
-<pin name="BLUE_A" x="-5.08" y="5.08" visible="off" length="point"/>
-<pin name="RED_A" x="-5.08" y="-5.08" visible="off" length="point"/>
-</symbol>
-</symbols>
-<devicesets>
-<deviceset name="RGBLED" prefix="LED">
-<description>For 5050 RGB LEDs, the order of the LEDs may vary from one manufacturer to another!</description>
-<gates>
-<gate name="G$1" symbol="RGBLED" x="0" y="0"/>
-</gates>
-<devices>
-<device name="5050" package="RGBLED5050">
-<connects>
-<connect gate="G$1" pin="BLUE_A" pad="3"/>
-<connect gate="G$1" pin="BLUE_C" pad="4"/>
-<connect gate="G$1" pin="GREEN_A" pad="1"/>
-<connect gate="G$1" pin="GREEN_C" pad="6"/>
-<connect gate="G$1" pin="RED_A" pad="2"/>
-<connect gate="G$1" pin="RED_C" pad="5"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-</devices>
-</deviceset>
-</devicesets>
-</library>
 <library name="ELEC327">
 <description>&lt;b&gt;Rice ELEC327 2014&lt;/b&gt;&lt;p&gt;
 Library for Lab2</description>
@@ -6150,9 +6069,8 @@ PDIP (N) 20 Pin Package &lt;br&gt;</description>
 <part name="R1" library="resistor" deviceset="R-US_" device="R1206"/>
 <part name="R2" library="resistor" deviceset="R-US_" device="R1206"/>
 <part name="R3" library="resistor" deviceset="R-US_" device="R1206"/>
-<part name="LED1" library="adafruit" deviceset="RGBLED" device="5050"/>
 <part name="BAT1" library="ELEC327" deviceset="BATTERY" device="BU2032SM"/>
-<part name="C1" library="resistor" deviceset="C-US" device="C1206"/>
+<part name="C1" library="resistor" deviceset="C-US" device="C1206" value="10 uF"/>
 <part name="GND1" library="supply1" deviceset="GND" device=""/>
 <part name="GND2" library="supply1" deviceset="GND" device=""/>
 </parts>
@@ -6166,7 +6084,6 @@ PDIP (N) 20 Pin Package &lt;br&gt;</description>
 <instance part="R1" gate="G$1" x="27.94" y="190.5"/>
 <instance part="R2" gate="G$1" x="27.94" y="182.88"/>
 <instance part="R3" gate="G$1" x="27.94" y="175.26"/>
-<instance part="LED1" gate="G$1" x="33.02" y="154.94"/>
 <instance part="BAT1" gate="G$1" x="15.24" y="142.24"/>
 <instance part="C1" gate="G$1" x="45.72" y="182.88"/>
 <instance part="GND1" gate="1" x="10.16" y="177.8"/>
