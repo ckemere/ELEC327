@@ -1,1 +1,30 @@
+# Ignore list for Eagle, a PCB layout tool
+
+# Backup files
+*.s#?
+*.b#?
+*.l#?
+
+# Eagle project file
+# It contains a serial number and references to the file structure
+# on your computer.
+# comment the following line if you want to have your project file included.
+eagle.epf
+
+# CAM files
+*.$$$
+*.GBL
+*.GBO
+*.GBP
+*.GBS
+*.GML
+*.GTL
+*.GTO
+*.GTP
+*.GTS
+*.TXT
+
+*.dri
+*.gpi
+
 .DS_Store
