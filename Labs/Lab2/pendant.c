@@ -64,7 +64,7 @@ int main(void)
       P2OUT &= ;                          // ?
       value = next_led(direction);
       p1 = (value & 0xFF00) >> 8;         // ?
-      p2 = value & 0x00FF;                // ?
+      p2 = ;                // ?
       P1OUT |= p1;
       P2OUT |= p2;
 
