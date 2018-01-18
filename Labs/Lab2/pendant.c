@@ -20,7 +20,7 @@ unsigned int next_led(int direction)
   static unsigned int led = 0x00;
 
   // CODE
-  led = led ^ 0xC0FF;
+  led = led ^ 0xC0FF; // replace this line!!
 
   return led;
 }
