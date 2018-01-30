@@ -1,30 +1,29 @@
-/*
- * Minimum code needed to create a timer-based interrupt. The following code is
- * equivalent to (after all setup code):
- *
- * while(1){/Users/ckemere/Development/elec327.github.io/lab3/lab3_skeleton.c
- *   __delay_cycles(1000);
- *   i++;
- * }
- *
- * You should not, however, use __delay_cycles, as it locks the CPU to the cycles
- * during this time, and can't be used to compute anything else.
- *
- */
+/* Based on msp430g2xx3_wdt_02.c from the TI Examples */
 
-#include <msp430g2553.h>		//must include so compiler knows what each variable means
+#include <msp430.h>
 
-void main(void){
-	WDTCTL = WDTPW + WDTHOLD;	//Stop WDT
-	CCTL0 = CCIE;				//Puts the timer control on CCR0
-	CCR0 = 1000;				//1000 cycles until first interrupt
-	TACTL = TASSEL_2 + MC_2;	//right click and "Open Declaration" to find out about each variable
-								//(adding a specific setting applies it to that control variable)
+int main(void)
+{
+    WDTCTL = WDT_ADLY_250;                    // WDT 250ms, ACLK, interval timer
+    IE1 |= WDTIE;                             // Enable WDT interrupt
+    P1DIR |= BIT0;                            // Set P1.0 to output direction
 
-	__enable_interrupt();		//global interrupt enable
+    __bis_SR_register(GIE);                   // Enable interrupts
+    while (1) {
+        __bis_SR_register(LPM3_bits);   // Enter LPM3 w/interrupt
+        P1OUT ^= BIT0;
+    }
 }
 
-#pragma vector = TIMER0_A0_VECTOR	//says that the interrupt that follows will use the "TIMER0_A0_VECTOR" interrupt
-__interrupt void Timer_A(void){		//can name the actual function anything
-	CCR0 += 1000;
+// Watchdog Timer interrupt service routine
+#if defined(__TI_COMPILER_VERSION__) || defined(__IAR_SYSTEMS_ICC__)
+#pragma vector=WDT_VECTOR
+__interrupt void watchdog_timer(void)
+#elif defined(__GNUC__)
+void __attribute__ ((interrupt(WDT_VECTOR))) watchdog_timer (void)
+#else
+#error Compiler not supported!
+#endif
+{
+    __bic_SR_register_on_exit(LPM3_bits);
 }
