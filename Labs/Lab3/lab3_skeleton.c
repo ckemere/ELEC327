@@ -4,6 +4,7 @@
 
 int main(void)
 {
+    BCSCTL3 |= LFXT1S_2;                      // ACLK = VLO
     WDTCTL = WDT_ADLY_250;                    // WDT 250ms, ACLK, interval timer
     IE1 |= WDTIE;                             // Enable WDT interrupt
     P1DIR |= BIT0;                            // Set P1.0 to output direction
