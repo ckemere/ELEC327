@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="7.3.0">
+<eagle version="8.6.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
+<setting keepoldvectorfont="yes"/>
 <setting verticaltext="up"/>
 </settings>
 <grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
@@ -6073,6 +6074,8 @@ PDIP (N) 20 Pin Package &lt;br&gt;</description>
 <part name="C1" library="resistor" deviceset="C-US" device="C1206" value="10 uF"/>
 <part name="GND1" library="supply1" deviceset="GND" device=""/>
 <part name="GND2" library="supply1" deviceset="GND" device=""/>
+<part name="GND3" library="supply1" deviceset="GND" device=""/>
+<part name="R_RST" library="resistor" deviceset="R-US_" device="R1206" value="47K"/>
 </parts>
 <sheets>
 <sheet>
@@ -6084,10 +6087,12 @@ PDIP (N) 20 Pin Package &lt;br&gt;</description>
 <instance part="R1" gate="G$1" x="27.94" y="190.5"/>
 <instance part="R2" gate="G$1" x="27.94" y="182.88"/>
 <instance part="R3" gate="G$1" x="27.94" y="175.26"/>
-<instance part="BAT1" gate="G$1" x="15.24" y="142.24"/>
+<instance part="BAT1" gate="G$1" x="17.78" y="144.78" rot="R270"/>
 <instance part="C1" gate="G$1" x="45.72" y="182.88"/>
 <instance part="GND1" gate="1" x="10.16" y="177.8"/>
 <instance part="GND2" gate="1" x="53.34" y="170.18"/>
+<instance part="GND3" gate="1" x="17.78" y="132.08"/>
+<instance part="R_RST" gate="G$1" x="7.62" y="198.12" rot="R90"/>
 </instances>
 <busses>
 </busses>
@@ -6104,6 +6109,16 @@ PDIP (N) 20 Pin Package &lt;br&gt;</description>
 <wire x1="45.72" y1="190.5" x2="53.34" y2="190.5" width="0.1524" layer="91"/>
 <label x="50.8" y="190.5" size="1.778" layer="95"/>
 </segment>
+<segment>
+<pinref part="BAT1" gate="G$1" pin="+"/>
+<wire x1="17.78" y1="149.86" x2="17.78" y2="157.48" width="0.1524" layer="91"/>
+<label x="20.32" y="154.94" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="R_RST" gate="G$1" pin="2"/>
+<wire x1="7.62" y1="203.2" x2="7.62" y2="210.82" width="0.1524" layer="91"/>
+<label x="10.16" y="205.74" size="1.778" layer="95"/>
+</segment>
 </net>
 <net name="GND" class="0">
 <segment>
@@ -6117,6 +6132,21 @@ PDIP (N) 20 Pin Package &lt;br&gt;</description>
 <wire x1="45.72" y1="177.8" x2="45.72" y2="172.72" width="0.1524" layer="91"/>
 <wire x1="45.72" y1="172.72" x2="53.34" y2="172.72" width="0.1524" layer="91"/>
 <pinref part="GND2" gate="1" pin="GND"/>
+</segment>
+<segment>
+<pinref part="BAT1" gate="G$1" pin="-"/>
+<wire x1="17.78" y1="139.7" x2="17.78" y2="134.62" width="0.1524" layer="91"/>
+<pinref part="GND3" gate="1" pin="GND"/>
+</segment>
+</net>
+<net name="N$1" class="0">
+<segment>
+<pinref part="U$2" gate="G$1" pin="16"/>
+<wire x1="0" y1="170.18" x2="17.78" y2="170.18" width="0.1524" layer="91"/>
+<wire x1="17.78" y1="170.18" x2="17.78" y2="187.96" width="0.1524" layer="91"/>
+<wire x1="17.78" y1="187.96" x2="7.62" y2="187.96" width="0.1524" layer="91"/>
+<wire x1="7.62" y1="187.96" x2="7.62" y2="193.04" width="0.1524" layer="91"/>
+<pinref part="R_RST" gate="G$1" pin="1"/>
 </segment>
 </net>
 </nets>
