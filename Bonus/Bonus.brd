@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="9.1.2">
+<eagle version="9.2.2">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -819,164 +819,270 @@ design rules under a new name.</description>
 <attribute name="PACKAGE" value="TSSOP-16" x="16.51" y="41.91" size="1.778" layer="27" rot="R45" display="off"/>
 <attribute name="SUPPLIER" value="Texas Instruments" x="16.51" y="41.91" size="1.778" layer="27" rot="R45" display="off"/>
 </element>
-<element name="K1" library="Seeed-OPL-Switch" package="SW4-SMD-6.0X6.0X5.0MM" value="" x="19.05" y="19.05" rot="R315">
+<element name="K1" library="Seeed-OPL-Switch" package="SW4-SMD-6.0X6.0X5.0MM" value="" x="19.05" y="19.05" smashed="yes" rot="R315">
 <attribute name="MPN" value="DTSM-62K-S-V-T/R" x="19.05" y="19.05" size="1.778" layer="27" rot="R315" display="off"/>
+<attribute name="NAME" x="19.4990125" y="23.0911125" size="0.889" layer="25" ratio="11" rot="R315"/>
+<attribute name="VALUE" x="16.804934375" y="20.3970375" size="0.889" layer="27" ratio="11" rot="R315"/>
 </element>
-<element name="D5" library="Seeed-OPL-Diode" package="LED-0805" value="GREEN-0805" x="31.75" y="59.69" rot="R90">
+<element name="D5" library="Seeed-OPL-Diode" package="LED-0805" value="GREEN-0805" x="31.75" y="59.69" smashed="yes" rot="R90">
 <attribute name="MPN" value="17-215SYGC/S530-E2/TR8" x="31.75" y="59.69" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="NAME" x="30.607" y="57.785" size="0.889" layer="25" font="vector" ratio="11" rot="R90"/>
+<attribute name="VALUE" x="33.4375" y="57.993" size="0.635" layer="27" ratio="10" rot="R90"/>
 </element>
-<element name="D6" library="Seeed-OPL-Diode" package="LED-0805" value="GREEN-0805" x="38.98140625" y="58.73795625" rot="R75">
+<element name="D6" library="Seeed-OPL-Diode" package="LED-0805" value="GREEN-0805" x="38.98140625" y="58.73795625" smashed="yes" rot="R75">
 <attribute name="MPN" value="17-215SYGC/S530-E2/TR8" x="38.98140625" y="58.73795625" size="1.778" layer="27" rot="R75" display="off"/>
+<attribute name="NAME" x="37.3843" y="57.193696875" size="0.889" layer="25" font="vector" ratio="11" rot="R75"/>
+<attribute name="VALUE" x="40.1721875" y="56.662021875" size="0.635" layer="27" ratio="10" rot="R75"/>
 </element>
-<element name="D7" library="Seeed-OPL-Diode" package="LED-0805" value="GREEN-0805" x="45.72" y="55.94675" rot="R60">
+<element name="D7" library="Seeed-OPL-Diode" package="LED-0805" value="GREEN-0805" x="45.72" y="55.94675" smashed="yes" rot="R60">
 <attribute name="MPN" value="17-215SYGC/S530-E2/TR8" x="45.72" y="55.94675" size="1.778" layer="27" rot="R60" display="off"/>
+<attribute name="NAME" x="43.77763125" y="54.86846875" size="0.889" layer="25" font="vector" ratio="11" rot="R60"/>
+<attribute name="VALUE" x="46.332915625" y="53.633353125" size="0.635" layer="27" ratio="10" rot="R60"/>
 </element>
-<element name="D8" library="Seeed-OPL-Diode" package="LED-0805" value="GREEN-0805" x="51.506553125" y="51.506553125" rot="R45">
+<element name="D8" library="Seeed-OPL-Diode" package="LED-0805" value="GREEN-0805" x="51.506553125" y="51.506553125" smashed="yes" rot="R45">
 <attribute name="MPN" value="17-215SYGC/S530-E2/TR8" x="51.506553125" y="51.506553125" size="1.778" layer="27" rot="R45" display="off"/>
+<attribute name="NAME" x="49.351290625" y="50.9677375" size="0.889" layer="25" font="vector" ratio="11" rot="R45"/>
+<attribute name="VALUE" x="51.499834375" y="49.11335" size="0.635" layer="27" ratio="10" rot="R45"/>
 </element>
-<element name="D9" library="Seeed-OPL-Diode" package="LED-0805" value="GREEN-0805" x="55.94675" y="45.72" rot="R30">
+<element name="D9" library="Seeed-OPL-Diode" package="LED-0805" value="GREEN-0805" x="55.94675" y="45.72" smashed="yes" rot="R30">
 <attribute name="MPN" value="17-215SYGC/S530-E2/TR8" x="55.94675" y="45.72" size="1.778" layer="27" rot="R30" display="off"/>
+<attribute name="NAME" x="53.72546875" y="45.757365625" size="0.889" layer="25" font="vector" ratio="11" rot="R30"/>
+<attribute name="VALUE" x="55.320853125" y="43.41008125" size="0.635" layer="27" ratio="10" rot="R30"/>
 </element>
-<element name="D10" library="Seeed-OPL-Diode" package="LED-0805" value="GREEN-0805" x="58.73795625" y="38.98140625" rot="R15">
+<element name="D10" library="Seeed-OPL-Diode" package="LED-0805" value="GREEN-0805" x="58.73795625" y="38.98140625" smashed="yes" rot="R15">
 <attribute name="MPN" value="17-215SYGC/S530-E2/TR8" x="58.73795625" y="38.98140625" size="1.778" layer="27" rot="R15" display="off"/>
+<attribute name="NAME" x="56.602034375" y="39.59240625" size="0.889" layer="25" font="vector" ratio="11" rot="R15"/>
+<attribute name="VALUE" x="57.535534375" y="36.9121875" size="0.635" layer="27" ratio="10" rot="R15"/>
 </element>
-<element name="D11" library="Seeed-OPL-Diode" package="LED-0805" value="GREEN-0805" x="59.69" y="31.75">
+<element name="D11" library="Seeed-OPL-Diode" package="LED-0805" value="GREEN-0805" x="59.69" y="31.75" smashed="yes">
 <attribute name="MPN" value="17-215SYGC/S530-E2/TR8" x="59.69" y="31.75" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="57.785" y="32.893" size="0.889" layer="25" font="vector" ratio="11"/>
+<attribute name="VALUE" x="57.993" y="30.0625" size="0.635" layer="27" ratio="10"/>
 </element>
-<element name="D12" library="Seeed-OPL-Diode" package="LED-0805" value="GREEN-0805" x="58.73795625" y="24.51859375" rot="R345">
+<element name="D12" library="Seeed-OPL-Diode" package="LED-0805" value="GREEN-0805" x="58.73795625" y="24.51859375" smashed="yes" rot="R345">
 <attribute name="MPN" value="17-215SYGC/S530-E2/TR8" x="58.73795625" y="24.51859375" size="1.778" layer="27" rot="R345" display="off"/>
+<attribute name="NAME" x="57.193696875" y="26.115696875" size="0.889" layer="25" font="vector" ratio="11" rot="R345"/>
+<attribute name="VALUE" x="56.662021875" y="23.327809375" size="0.635" layer="27" ratio="10" rot="R345"/>
 </element>
-<element name="D13" library="Seeed-OPL-Diode" package="LED-0805" value="GREEN-0805" x="55.94675" y="17.78" rot="R330">
+<element name="D13" library="Seeed-OPL-Diode" package="LED-0805" value="GREEN-0805" x="55.94675" y="17.78" smashed="yes" rot="R330">
 <attribute name="MPN" value="17-215SYGC/S530-E2/TR8" x="65.59875" y="1.06224375" size="1.778" layer="27" rot="R330" display="off"/>
+<attribute name="NAME" x="54.86846875" y="19.722365625" size="0.889" layer="25" font="vector" ratio="11" rot="R330"/>
+<attribute name="VALUE" x="53.633353125" y="17.16708125" size="0.635" layer="27" ratio="10" rot="R330"/>
 </element>
-<element name="D14" library="Seeed-OPL-Diode" package="LED-0805" value="GREEN-0805" x="51.506553125" y="11.993446875" rot="R315">
+<element name="D14" library="Seeed-OPL-Diode" package="LED-0805" value="GREEN-0805" x="51.506553125" y="11.993446875" smashed="yes" rot="R315">
 <attribute name="MPN" value="17-215SYGC/S530-E2/TR8" x="49.474553125" y="1.325446875" size="1.778" layer="27" rot="R315" display="off"/>
+<attribute name="NAME" x="50.9677375" y="14.14870625" size="0.889" layer="25" font="vector" ratio="11" rot="R315"/>
+<attribute name="VALUE" x="49.11335" y="12.0001625" size="0.635" layer="27" ratio="10" rot="R315"/>
 </element>
-<element name="D15" library="Seeed-OPL-Diode" package="LED-0805" value="GREEN-0805" x="45.72" y="7.55325" rot="R300">
+<element name="D15" library="Seeed-OPL-Diode" package="LED-0805" value="GREEN-0805" x="45.72" y="7.55325" smashed="yes" rot="R300">
 <attribute name="MPN" value="17-215SYGC/S530-E2/TR8" x="39.283703125" y="-8.674740625" size="1.778" layer="27" rot="R300" display="off"/>
+<attribute name="NAME" x="45.757365625" y="9.774528125" size="0.889" layer="25" font="vector" ratio="11" rot="R300"/>
+<attribute name="VALUE" x="43.41008125" y="8.17914375" size="0.635" layer="27" ratio="10" rot="R300"/>
 </element>
-<element name="D16" library="Seeed-OPL-Diode" package="LED-0805" value="GREEN-0805" x="38.98140625" y="4.76204375" rot="R285">
+<element name="D16" library="Seeed-OPL-Diode" package="LED-0805" value="GREEN-0805" x="38.98140625" y="4.76204375" smashed="yes" rot="R285">
 <attribute name="MPN" value="17-215SYGC/S530-E2/TR8" x="31.01265" y="-2.771659375" size="1.778" layer="27" rot="R285" display="off"/>
+<attribute name="NAME" x="39.59240625" y="6.8979625" size="0.889" layer="25" font="vector" ratio="11" rot="R285"/>
+<attribute name="VALUE" x="36.9121875" y="5.9644625" size="0.635" layer="27" ratio="10" rot="R285"/>
 </element>
-<element name="D17" library="Seeed-OPL-Diode" package="LED-0805" value="GREEN-0805" x="31.75" y="3.81" rot="R270">
+<element name="D17" library="Seeed-OPL-Diode" package="LED-0805" value="GREEN-0805" x="31.75" y="3.81" smashed="yes" rot="R270">
 <attribute name="MPN" value="17-215SYGC/S530-E2/TR8" x="14.478" y="-3.302" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="NAME" x="32.893" y="5.715" size="0.889" layer="25" font="vector" ratio="11" rot="R270"/>
+<attribute name="VALUE" x="30.0625" y="5.507" size="0.635" layer="27" ratio="10" rot="R270"/>
 </element>
-<element name="D18" library="Seeed-OPL-Diode" package="LED-0805" value="GREEN-0805" x="24.51859375" y="4.76204375" rot="R255">
+<element name="D18" library="Seeed-OPL-Diode" package="LED-0805" value="GREEN-0805" x="24.51859375" y="4.76204375" smashed="yes" rot="R255">
 <attribute name="MPN" value="17-215SYGC/S530-E2/TR8" x="11.723834375" y="3.93686875" size="1.778" layer="27" rot="R255" display="off"/>
+<attribute name="NAME" x="26.115696875" y="6.3063" size="0.889" layer="25" font="vector" ratio="11" rot="R255"/>
+<attribute name="VALUE" x="23.327809375" y="6.837975" size="0.635" layer="27" ratio="10" rot="R255"/>
 </element>
-<element name="D19" library="Seeed-OPL-Diode" package="LED-0805" value="GREEN-0805" x="17.78" y="7.55325" rot="R240">
+<element name="D19" library="Seeed-OPL-Diode" package="LED-0805" value="GREEN-0805" x="17.78" y="7.55325" smashed="yes" rot="R240">
 <attribute name="MPN" value="17-215SYGC/S530-E2/TR8" x="-0.974640625" y="16.6692375" size="1.778" layer="27" rot="R240" display="off"/>
+<attribute name="NAME" x="19.722365625" y="8.631528125" size="0.889" layer="25" font="vector" ratio="11" rot="R240"/>
+<attribute name="VALUE" x="17.16708125" y="9.86664375" size="0.635" layer="27" ratio="10" rot="R240"/>
 </element>
-<element name="D20" library="Seeed-OPL-Diode" package="LED-0805" value="GREEN-0805" x="11.993446875" y="11.993446875" rot="R225">
+<element name="D20" library="Seeed-OPL-Diode" package="LED-0805" value="GREEN-0805" x="11.993446875" y="11.993446875" smashed="yes" rot="R225">
 <attribute name="MPN" value="17-215SYGC/S530-E2/TR8" x="0.30944375" y="22.66144375" size="1.778" layer="27" rot="R225" display="off"/>
+<attribute name="NAME" x="14.14870625" y="12.532259375" size="0.889" layer="25" font="vector" ratio="11" rot="R225"/>
+<attribute name="VALUE" x="12.0001625" y="14.386646875" size="0.635" layer="27" ratio="10" rot="R225"/>
 </element>
-<element name="D21" library="Seeed-OPL-Diode" package="LED-0805" value="GREEN-0805" x="7.55325" y="17.78" rot="R210">
+<element name="D21" library="Seeed-OPL-Diode" package="LED-0805" value="GREEN-0805" x="7.55325" y="17.78" smashed="yes" rot="R210">
 <attribute name="MPN" value="17-215SYGC/S530-E2/TR8" x="17.205246875" y="34.497753125" size="1.778" layer="27" rot="R210" display="off"/>
+<attribute name="NAME" x="9.774528125" y="17.74263125" size="0.889" layer="25" font="vector" ratio="11" rot="R210"/>
+<attribute name="VALUE" x="8.17914375" y="20.089915625" size="0.635" layer="27" ratio="10" rot="R210"/>
 </element>
-<element name="D22" library="Seeed-OPL-Diode" package="LED-0805" value="GREEN-0805" x="4.76204375" y="24.51859375" rot="R195">
+<element name="D22" library="Seeed-OPL-Diode" package="LED-0805" value="GREEN-0805" x="4.76204375" y="24.51859375" smashed="yes" rot="R195">
 <attribute name="MPN" value="17-215SYGC/S530-E2/TR8" x="15.0168" y="28.092828125" size="1.778" layer="27" rot="R195" display="off"/>
+<attribute name="NAME" x="6.8979625" y="23.907590625" size="0.889" layer="25" font="vector" ratio="11" rot="R195"/>
+<attribute name="VALUE" x="5.9644625" y="26.587809375" size="0.635" layer="27" ratio="10" rot="R195"/>
 </element>
-<element name="D23" library="Seeed-OPL-Diode" package="LED-0805" value="GREEN-0805" x="3.81" y="31.75" rot="R180">
+<element name="D23" library="Seeed-OPL-Diode" package="LED-0805" value="GREEN-0805" x="3.81" y="31.75" smashed="yes" rot="R180">
 <attribute name="MPN" value="17-215SYGC/S530-E2/TR8" x="21.082" y="34.29" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="NAME" x="5.715" y="30.607" size="0.889" layer="25" font="vector" ratio="11" rot="R180"/>
+<attribute name="VALUE" x="5.507" y="33.4375" size="0.635" layer="27" ratio="10" rot="R180"/>
 </element>
-<element name="D24" library="Seeed-OPL-Diode" package="LED-0805" value="GREEN-0805" x="4.76204375" y="38.98140625" rot="R165">
+<element name="D24" library="Seeed-OPL-Diode" package="LED-0805" value="GREEN-0805" x="4.76204375" y="38.98140625" smashed="yes" rot="R165">
 <attribute name="MPN" value="17-215SYGC/S530-E2/TR8" x="15.2708" y="35.847109375" size="1.778" layer="27" rot="R165" display="off"/>
+<attribute name="NAME" x="6.3063" y="37.3843" size="0.889" layer="25" font="vector" ratio="11" rot="R165"/>
+<attribute name="VALUE" x="6.837975" y="40.1721875" size="0.635" layer="27" ratio="10" rot="R165"/>
 </element>
-<element name="D25" library="Seeed-OPL-Diode" package="LED-0805" value="GREEN-0805" x="7.55325" y="45.72" rot="R150">
+<element name="D25" library="Seeed-OPL-Diode" package="LED-0805" value="GREEN-0805" x="7.55325" y="45.72" smashed="yes" rot="R150">
 <attribute name="MPN" value="17-215SYGC/S530-E2/TR8" x="22.348421875" y="34.31800625" size="1.778" layer="27" rot="R150" display="off"/>
+<attribute name="NAME" x="8.631528125" y="43.77763125" size="0.889" layer="25" font="vector" ratio="11" rot="R150"/>
+<attribute name="VALUE" x="9.86664375" y="46.332915625" size="0.635" layer="27" ratio="10" rot="R150"/>
 </element>
-<element name="D26" library="Seeed-OPL-Diode" package="LED-0805" value="GREEN-0805" x="11.993446875" y="51.506553125" rot="R135">
+<element name="D26" library="Seeed-OPL-Diode" package="LED-0805" value="GREEN-0805" x="11.993446875" y="51.506553125" smashed="yes" rot="R135">
 <attribute name="MPN" value="17-215SYGC/S530-E2/TR8" x="19.10544375" y="40.838553125" size="1.778" layer="27" rot="R135" display="off"/>
+<attribute name="NAME" x="12.532259375" y="49.351290625" size="0.889" layer="25" font="vector" ratio="11" rot="R135"/>
+<attribute name="VALUE" x="14.386646875" y="51.499834375" size="0.635" layer="27" ratio="10" rot="R135"/>
 </element>
-<element name="D27" library="Seeed-OPL-Diode" package="LED-0805" value="GREEN-0805" x="17.78" y="55.94675" rot="R120">
+<element name="D27" library="Seeed-OPL-Diode" package="LED-0805" value="GREEN-0805" x="17.78" y="55.94675" smashed="yes" rot="R120">
 <attribute name="MPN" value="17-215SYGC/S530-E2/TR8" x="19.2626375" y="35.14675625" size="1.778" layer="27" rot="R120" display="off"/>
+<attribute name="NAME" x="17.74263125" y="53.72546875" size="0.889" layer="25" font="vector" ratio="11" rot="R120"/>
+<attribute name="VALUE" x="20.089915625" y="55.320853125" size="0.635" layer="27" ratio="10" rot="R120"/>
 </element>
-<element name="D28" library="Seeed-OPL-Diode" package="LED-0805" value="GREEN-0805" x="24.51859375" y="58.73795625" rot="R105">
+<element name="D28" library="Seeed-OPL-Diode" package="LED-0805" value="GREEN-0805" x="24.51859375" y="58.73795625" smashed="yes" rot="R105">
 <attribute name="MPN" value="17-215SYGC/S530-E2/TR8" x="21.12183125" y="43.285315625" size="1.778" layer="27" rot="R105" display="off"/>
+<attribute name="NAME" x="23.907590625" y="56.602034375" size="0.889" layer="25" font="vector" ratio="11" rot="R105"/>
+<attribute name="VALUE" x="26.587809375" y="57.535534375" size="0.635" layer="27" ratio="10" rot="R105"/>
 </element>
-<element name="R2" library="Seeed-OPL-Resistor" package="R0603" value="1K 1/10W" x="31.75" y="57.15" rot="R90">
+<element name="R2" library="Seeed-OPL-Resistor" package="R0603" value="300 1/10W" x="31.75" y="57.15" smashed="yes" rot="R90">
 <attribute name="MPN" value="RC0603JR-071KL" x="31.75" y="57.15" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="NAME" x="33.655" y="56.134" size="0.889" layer="25" ratio="11" rot="R180"/>
+<attribute name="VALUE" x="33.02" y="59.055" size="0.635" layer="27" ratio="10" rot="R180"/>
 </element>
-<element name="R3" library="Seeed-OPL-Resistor" package="R0603" value="1K 1/10W" x="38.324003125" y="56.284521875" rot="R75">
+<element name="R3" library="Seeed-OPL-Resistor" package="R0603" value="300 1/10W" x="38.324003125" y="56.284521875" smashed="yes" rot="R75">
 <attribute name="MPN" value="RC0603JR-071KL" x="38.324003125" y="56.284521875" size="1.778" layer="27" rot="R75" display="off"/>
+<attribute name="NAME" x="39.90113125" y="54.810090625" size="0.889" layer="25" ratio="11" rot="R165"/>
+<attribute name="VALUE" x="40.043778125" y="57.795909375" size="0.635" layer="27" ratio="10" rot="R165"/>
 </element>
-<element name="R4" library="Seeed-OPL-Resistor" package="R0603" value="1K 1/10W" x="44.45" y="53.747034375" rot="R60">
+<element name="R4" library="Seeed-OPL-Resistor" package="R0603" value="300 1/10W" x="44.45" y="53.747034375" smashed="yes" rot="R60">
 <attribute name="MPN" value="RC0603JR-071KL" x="44.45" y="53.747034375" size="1.778" layer="27" rot="R60" display="off"/>
+<attribute name="NAME" x="45.591778125" y="51.91465" size="0.889" layer="25" ratio="11" rot="R150"/>
+<attribute name="VALUE" x="46.50235" y="54.7618125" size="0.635" layer="27" ratio="10" rot="R150"/>
 </element>
-<element name="R5" library="Seeed-OPL-Resistor" package="R0603" value="1K 1/10W" x="49.71051875" y="49.71051875" rot="R45">
+<element name="R5" library="Seeed-OPL-Resistor" package="R0603" value="300 1/10W" x="49.71051875" y="49.71051875" smashed="yes" rot="R45">
 <attribute name="MPN" value="RC0603JR-071KL" x="49.71051875" y="49.71051875" size="1.778" layer="27" rot="R45" display="off"/>
+<attribute name="NAME" x="50.339134375" y="47.645059375" size="0.889" layer="25" ratio="11" rot="R135"/>
+<attribute name="VALUE" x="51.95558125" y="50.15953125" size="0.635" layer="27" ratio="10" rot="R135"/>
 </element>
-<element name="R6" library="Seeed-OPL-Resistor" package="R0603" value="1K 1/10W" x="53.747034375" y="44.45" rot="R30">
+<element name="R6" library="Seeed-OPL-Resistor" package="R0603" value="300 1/10W" x="53.747034375" y="44.45" smashed="yes" rot="R30">
 <attribute name="MPN" value="RC0603JR-071KL" x="53.747034375" y="44.45" size="1.778" layer="27" rot="R30" display="off"/>
+<attribute name="NAME" x="53.81965" y="42.29221875" size="0.889" layer="25" ratio="11" rot="R120"/>
+<attribute name="VALUE" x="56.0318125" y="44.302646875" size="0.635" layer="27" ratio="10" rot="R120"/>
 </element>
-<element name="R7" library="Seeed-OPL-Resistor" package="R0603" value="1K 1/10W" x="56.284521875" y="38.324003125" rot="R15">
+<element name="R7" library="Seeed-OPL-Resistor" package="R0603" value="300 1/10W" x="56.284521875" y="38.324003125" smashed="yes" rot="R15">
 <attribute name="MPN" value="RC0603JR-071KL" x="56.284521875" y="38.324003125" size="1.778" layer="27" rot="R15" display="off"/>
+<attribute name="NAME" x="55.796190625" y="36.220953125" size="0.889" layer="25" ratio="11" rot="R105"/>
+<attribute name="VALUE" x="58.453309375" y="37.590325" size="0.635" layer="27" ratio="10" rot="R105"/>
 </element>
-<element name="R8" library="Seeed-OPL-Resistor" package="R0603" value="1K 1/10W" x="57.15" y="31.75">
+<element name="R8" library="Seeed-OPL-Resistor" package="R0603" value="300 1/10W" x="57.15" y="31.75" smashed="yes">
 <attribute name="MPN" value="RC0603JR-071KL" x="57.15" y="31.75" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="56.134" y="29.845" size="0.889" layer="25" ratio="11" rot="R90"/>
+<attribute name="VALUE" x="59.055" y="30.48" size="0.635" layer="27" ratio="10" rot="R90"/>
 </element>
-<element name="R9" library="Seeed-OPL-Resistor" package="R0603" value="1K 1/10W" x="56.284521875" y="25.175996875" rot="R345">
+<element name="R9" library="Seeed-OPL-Resistor" package="R0603" value="300 1/10W" x="56.284521875" y="25.175996875" smashed="yes" rot="R345">
 <attribute name="MPN" value="RC0603JR-071KL" x="56.284521875" y="25.175996875" size="1.778" layer="27" rot="R345" display="off"/>
+<attribute name="NAME" x="54.810090625" y="23.598865625" size="0.889" layer="25" ratio="11" rot="R75"/>
+<attribute name="VALUE" x="57.795909375" y="23.45621875" size="0.635" layer="27" ratio="10" rot="R75"/>
 </element>
-<element name="R10" library="Seeed-OPL-Resistor" package="R0603" value="1K 1/10W" x="53.747034375" y="19.05" rot="R330">
+<element name="R10" library="Seeed-OPL-Resistor" package="R0603" value="300 1/10W" x="53.747034375" y="19.05" smashed="yes" rot="R330">
 <attribute name="MPN" value="RC0603JR-071KL" x="53.747034375" y="19.05" size="1.778" layer="27" rot="R330" display="off"/>
+<attribute name="NAME" x="51.91465" y="17.90821875" size="0.889" layer="25" ratio="11" rot="R60"/>
+<attribute name="VALUE" x="54.7618125" y="16.997646875" size="0.635" layer="27" ratio="10" rot="R60"/>
 </element>
-<element name="R11" library="Seeed-OPL-Resistor" package="R0603" value="1K 1/10W" x="49.71051875" y="13.78948125" rot="R315">
+<element name="R11" library="Seeed-OPL-Resistor" package="R0603" value="300 1/10W" x="49.71051875" y="13.78948125" smashed="yes" rot="R315">
 <attribute name="MPN" value="RC0603JR-071KL" x="49.71051875" y="13.78948125" size="1.778" layer="27" rot="R315" display="off"/>
+<attribute name="NAME" x="47.645059375" y="13.1608625" size="0.889" layer="25" ratio="11" rot="R45"/>
+<attribute name="VALUE" x="50.15953125" y="11.544415625" size="0.635" layer="27" ratio="10" rot="R45"/>
 </element>
-<element name="R12" library="Seeed-OPL-Resistor" package="R0603" value="1K 1/10W" x="44.45" y="9.752965625" rot="R300">
+<element name="R12" library="Seeed-OPL-Resistor" package="R0603" value="300 1/10W" x="44.45" y="9.752965625" smashed="yes" rot="R300">
 <attribute name="MPN" value="RC0603JR-071KL" x="44.45" y="9.752965625" size="1.778" layer="27" rot="R300" display="off"/>
+<attribute name="NAME" x="42.29221875" y="9.680346875" size="0.889" layer="25" ratio="11" rot="R30"/>
+<attribute name="VALUE" x="44.302646875" y="7.468184375" size="0.635" layer="27" ratio="10" rot="R30"/>
 </element>
-<element name="R13" library="Seeed-OPL-Resistor" package="R0603" value="1K 1/10W" x="38.324003125" y="7.215478125" rot="R285">
+<element name="R13" library="Seeed-OPL-Resistor" package="R0603" value="300 1/10W" x="38.324003125" y="7.215478125" smashed="yes" rot="R285">
 <attribute name="MPN" value="RC0603JR-071KL" x="38.324003125" y="7.215478125" size="1.778" layer="27" rot="R285" display="off"/>
+<attribute name="NAME" x="36.220953125" y="7.70380625" size="0.889" layer="25" ratio="11" rot="R15"/>
+<attribute name="VALUE" x="37.590325" y="5.0466875" size="0.635" layer="27" ratio="10" rot="R15"/>
 </element>
-<element name="R14" library="Seeed-OPL-Resistor" package="R0603" value="1K 1/10W" x="31.75" y="6.35" rot="R270">
+<element name="R14" library="Seeed-OPL-Resistor" package="R0603" value="300 1/10W" x="31.75" y="6.35" smashed="yes" rot="R270">
 <attribute name="MPN" value="RC0603JR-071KL" x="31.75" y="6.35" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="NAME" x="29.845" y="7.366" size="0.889" layer="25" ratio="11"/>
+<attribute name="VALUE" x="30.48" y="4.445" size="0.635" layer="27" ratio="10"/>
 </element>
-<element name="R15" library="Seeed-OPL-Resistor" package="R0603" value="1K 1/10W" x="25.175996875" y="7.215478125" rot="R255">
+<element name="R15" library="Seeed-OPL-Resistor" package="R0603" value="300 1/10W" x="25.175996875" y="7.215478125" smashed="yes" rot="R255">
 <attribute name="MPN" value="RC0603JR-071KL" x="25.175996875" y="7.215478125" size="1.778" layer="27" rot="R255" display="off"/>
+<attribute name="NAME" x="23.598865625" y="8.68990625" size="0.889" layer="25" ratio="11" rot="R345"/>
+<attribute name="VALUE" x="23.45621875" y="5.7040875" size="0.635" layer="27" ratio="10" rot="R345"/>
 </element>
-<element name="R16" library="Seeed-OPL-Resistor" package="R0603" value="1K 1/10W" x="19.05" y="9.752965625" rot="R240">
+<element name="R16" library="Seeed-OPL-Resistor" package="R0603" value="300 1/10W" x="19.05" y="9.752965625" smashed="yes" rot="R240">
 <attribute name="MPN" value="RC0603JR-071KL" x="19.05" y="9.752965625" size="1.778" layer="27" rot="R240" display="off"/>
+<attribute name="NAME" x="17.90821875" y="11.585346875" size="0.889" layer="25" ratio="11" rot="R330"/>
+<attribute name="VALUE" x="16.997646875" y="8.738184375" size="0.635" layer="27" ratio="10" rot="R330"/>
 </element>
-<element name="R17" library="Seeed-OPL-Resistor" package="R0603" value="1K 1/10W" x="13.78948125" y="13.78948125" rot="R225">
+<element name="R17" library="Seeed-OPL-Resistor" package="R0603" value="300 1/10W" x="13.78948125" y="13.78948125" smashed="yes" rot="R225">
 <attribute name="MPN" value="RC0603JR-071KL" x="13.78948125" y="13.78948125" size="1.778" layer="27" rot="R225" display="off"/>
+<attribute name="NAME" x="13.1608625" y="15.8549375" size="0.889" layer="25" ratio="11" rot="R315"/>
+<attribute name="VALUE" x="11.544415625" y="13.340465625" size="0.635" layer="27" ratio="10" rot="R315"/>
 </element>
-<element name="R18" library="Seeed-OPL-Resistor" package="R0603" value="1K 1/10W" x="9.752965625" y="19.05" rot="R210">
+<element name="R18" library="Seeed-OPL-Resistor" package="R0603" value="300 1/10W" x="9.752965625" y="19.05" smashed="yes" rot="R210">
 <attribute name="MPN" value="RC0603JR-071KL" x="9.752965625" y="19.05" size="1.778" layer="27" rot="R210" display="off"/>
+<attribute name="NAME" x="9.680346875" y="21.207778125" size="0.889" layer="25" ratio="11" rot="R300"/>
+<attribute name="VALUE" x="7.468184375" y="19.19735" size="0.635" layer="27" ratio="10" rot="R300"/>
 </element>
-<element name="R19" library="Seeed-OPL-Resistor" package="R0603" value="1K 1/10W" x="7.215478125" y="25.175996875" rot="R195">
+<element name="R19" library="Seeed-OPL-Resistor" package="R0603" value="300 1/10W" x="7.215478125" y="25.175996875" smashed="yes" rot="R195">
 <attribute name="MPN" value="RC0603JR-071KL" x="7.215478125" y="25.175996875" size="1.778" layer="27" rot="R195" display="off"/>
+<attribute name="NAME" x="7.70380625" y="27.27904375" size="0.889" layer="25" ratio="11" rot="R285"/>
+<attribute name="VALUE" x="5.0466875" y="25.909671875" size="0.635" layer="27" ratio="10" rot="R285"/>
 </element>
-<element name="R20" library="Seeed-OPL-Resistor" package="R0603" value="1K 1/10W" x="6.35" y="31.75" rot="R180">
+<element name="R20" library="Seeed-OPL-Resistor" package="R0603" value="300 1/10W" x="6.35" y="31.75" smashed="yes" rot="R180">
 <attribute name="MPN" value="RC0603JR-071KL" x="6.35" y="31.75" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="NAME" x="7.366" y="33.655" size="0.889" layer="25" ratio="11" rot="R270"/>
+<attribute name="VALUE" x="4.445" y="33.02" size="0.635" layer="27" ratio="10" rot="R270"/>
 </element>
-<element name="R21" library="Seeed-OPL-Resistor" package="R0603" value="1K 1/10W" x="7.215478125" y="38.324003125" rot="R165">
+<element name="R21" library="Seeed-OPL-Resistor" package="R0603" value="300 1/10W" x="7.215478125" y="38.324003125" smashed="yes" rot="R165">
 <attribute name="MPN" value="RC0603JR-071KL" x="7.215478125" y="38.324003125" size="1.778" layer="27" rot="R165" display="off"/>
+<attribute name="NAME" x="8.68990625" y="39.90113125" size="0.889" layer="25" ratio="11" rot="R255"/>
+<attribute name="VALUE" x="5.7040875" y="40.043778125" size="0.635" layer="27" ratio="10" rot="R255"/>
 </element>
-<element name="R22" library="Seeed-OPL-Resistor" package="R0603" value="1K 1/10W" x="9.752965625" y="44.45" rot="R150">
+<element name="R22" library="Seeed-OPL-Resistor" package="R0603" value="300 1/10W" x="9.752965625" y="44.45" smashed="yes" rot="R150">
 <attribute name="MPN" value="RC0603JR-071KL" x="9.752965625" y="44.45" size="1.778" layer="27" rot="R150" display="off"/>
+<attribute name="NAME" x="11.585346875" y="45.591778125" size="0.889" layer="25" ratio="11" rot="R240"/>
+<attribute name="VALUE" x="8.738184375" y="46.50235" size="0.635" layer="27" ratio="10" rot="R240"/>
 </element>
-<element name="R23" library="Seeed-OPL-Resistor" package="R0603" value="1K 1/10W" x="13.78948125" y="49.71051875" rot="R135">
+<element name="R23" library="Seeed-OPL-Resistor" package="R0603" value="300 1/10W" x="13.78948125" y="49.71051875" smashed="yes" rot="R135">
 <attribute name="MPN" value="RC0603JR-071KL" x="13.78948125" y="49.71051875" size="1.778" layer="27" rot="R135" display="off"/>
+<attribute name="NAME" x="15.8549375" y="50.339134375" size="0.889" layer="25" ratio="11" rot="R225"/>
+<attribute name="VALUE" x="13.340465625" y="51.95558125" size="0.635" layer="27" ratio="10" rot="R225"/>
 </element>
-<element name="R24" library="Seeed-OPL-Resistor" package="R0603" value="1K 1/10W" x="19.05" y="53.747034375" rot="R120">
+<element name="R24" library="Seeed-OPL-Resistor" package="R0603" value="300 1/10W" x="19.05" y="53.747034375" smashed="yes" rot="R120">
 <attribute name="MPN" value="RC0603JR-071KL" x="19.05" y="53.747034375" size="1.778" layer="27" rot="R120" display="off"/>
+<attribute name="NAME" x="21.207778125" y="53.81965" size="0.889" layer="25" ratio="11" rot="R210"/>
+<attribute name="VALUE" x="19.19735" y="56.0318125" size="0.635" layer="27" ratio="10" rot="R210"/>
 </element>
-<element name="R25" library="Seeed-OPL-Resistor" package="R0603" value="1K 1/10W" x="25.175996875" y="56.284521875" rot="R105">
+<element name="R25" library="Seeed-OPL-Resistor" package="R0603" value="300 1/10W" x="25.175996875" y="56.284521875" smashed="yes" rot="R105">
 <attribute name="MPN" value="RC0603JR-071KL" x="25.175996875" y="56.284521875" size="1.778" layer="27" rot="R105" display="off"/>
+<attribute name="NAME" x="27.27904375" y="55.796190625" size="0.889" layer="25" ratio="11" rot="R195"/>
+<attribute name="VALUE" x="25.909671875" y="58.453309375" size="0.635" layer="27" ratio="10" rot="R195"/>
 </element>
-<element name="U4" library="Seeed-OPL-sensor" package="QFN24G-0.4-3X3MM" value="MPU-9250" x="31.75" y="31.75" rot="R270">
+<element name="U4" library="Seeed-OPL-sensor" package="QFN24G-0.4-3X3MM" value="MPU-9250" x="31.75" y="31.75" smashed="yes" rot="R270">
 <attribute name="MPN" value="MPU-9250" x="31.75" y="31.75" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="NAME" x="33.909" y="33.02" size="0.889" layer="25" ratio="11" rot="R270"/>
+<attribute name="VALUE" x="28.915" y="33.12" size="0.635" layer="27" ratio="11" rot="R270"/>
 </element>
-<element name="C3" library="Seeed-OPL-Capacitor" package="C0402" value="100nf" x="28.448" y="30.48" rot="R180">
+<element name="C3" library="Seeed-OPL-Capacitor" package="C0402" value="100nf" x="28.448" y="30.48" smashed="yes" rot="R180">
 <attribute name="MPN" value="CC0402KRX7R8BB104" x="28.448" y="30.48" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="NAME" x="27.813" y="29.21" size="0.889" layer="25" ratio="11" rot="R90"/>
+<attribute name="VALUE" x="29.972" y="29.083" size="0.635" layer="27" font="vector" ratio="10" rot="R90"/>
 </element>
-<element name="C4" library="Seeed-OPL-Capacitor" package="C0402" value="10nf" x="32.766" y="28.702" rot="R270">
+<element name="C4" library="Seeed-OPL-Capacitor" package="C0402" value="10nf" x="32.766" y="28.702" smashed="yes" rot="R270">
 <attribute name="MPN" value="CC0402KRX7R9BB103" x="32.766" y="28.702" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="NAME" x="34.036" y="28.067" size="0.889" layer="25" ratio="11" rot="R180"/>
+<attribute name="VALUE" x="34.163" y="30.226" size="0.635" layer="27" font="vector" ratio="10" rot="R180"/>
 </element>
-<element name="C5" library="Seeed-OPL-Capacitor" package="C0402" value="100nf" x="29.21" y="35.052" rot="R180">
+<element name="C5" library="Seeed-OPL-Capacitor" package="C0402" value="100nf" x="29.21" y="35.052" smashed="yes" rot="R180">
 <attribute name="MPN" value="CC0402KRX7R8BB104" x="29.21" y="35.052" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="NAME" x="28.575" y="33.782" size="0.889" layer="25" ratio="11" rot="R90"/>
+<attribute name="VALUE" x="30.734" y="33.655" size="0.635" layer="27" font="vector" ratio="10" rot="R90"/>
 </element>
 </elements>
 <signals>
