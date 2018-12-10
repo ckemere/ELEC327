@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="8.4.3">
+<eagle version="9.1.2">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
 <setting keepoldvectorfont="yes"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.05" unitdist="inch" unit="inch" style="lines" multiple="2" display="yes" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -2048,26 +2048,26 @@ at 30/07/2012 17:45:58</description>
 </net>
 <net name="SPI-MISO" class="0">
 <segment>
-<pinref part="MSP430" gate="G$1" pin="15"/>
-<wire x1="25.4" y1="-2.54" x2="48.26" y2="-2.54" width="0.1524" layer="91"/>
-<label x="38.1" y="-2.54" size="1.778" layer="95"/>
-</segment>
-<segment>
 <pinref part="U4" gate="G$1" pin="AD0/SDO"/>
 <wire x1="-100.33" y1="10.16" x2="-109.22" y2="10.16" width="0.1524" layer="91"/>
 <label x="-110.49" y="10.16" size="1.778" layer="95"/>
 </segment>
-</net>
-<net name="SPI-MOSI" class="0">
 <segment>
 <pinref part="MSP430" gate="G$1" pin="14"/>
-<wire x1="25.4" y1="-5.08" x2="48.26" y2="-5.08" width="0.1524" layer="91"/>
-<label x="38.1" y="-5.08" size="1.778" layer="95"/>
+<wire x1="25.4" y1="-5.08" x2="50.8" y2="-5.08" width="0.1524" layer="91"/>
+<label x="45.72" y="-5.08" size="1.778" layer="95"/>
 </segment>
+</net>
+<net name="SPI-MOSI" class="0">
 <segment>
 <pinref part="U4" gate="G$1" pin="SDA/SDI"/>
 <wire x1="-71.12" y1="30.48" x2="-60.96" y2="30.48" width="0.1524" layer="91"/>
 <label x="-67.31" y="30.48" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="MSP430" gate="G$1" pin="15"/>
+<wire x1="25.4" y1="-2.54" x2="50.8" y2="-2.54" width="0.1524" layer="91"/>
+<label x="45.72" y="-2.54" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="N$7" class="0">
