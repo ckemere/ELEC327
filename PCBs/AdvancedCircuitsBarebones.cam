@@ -1,0 +1,138 @@
+{
+    "author": {
+        "email": "caleb.kemere@rice.edu",
+        "name": "Caleb Kemere"
+    },
+    "description": {
+        "EN": "CAM job for <a href=\"https://www.4pcb.com/\">Advanced Circuits</a> 2 layer Barebones PCB process."
+    },
+    "output_type": "directory",
+    "outputs": [
+        {
+            "format_specifier": {
+                "decimal": 4,
+                "integer": 2
+            },
+            "output_type": "drill",
+            "outputs": [
+                {
+                    "advanced_options": {
+                        "mirror": false,
+                        "offset_x": 0,
+                        "offset_y": 0,
+                        "rotate": false,
+                        "upside_down": false
+                    },
+                    "drills": {
+                        "NPTH": true,
+                        "PTH": true,
+                        "VIA": true
+                    },
+                    "filename_format": "%N.TXT",
+                    "layers": {
+                        "from": 1,
+                        "to": 16
+                    },
+                    "name": "Drills",
+                    "type": "excellon"
+                }
+            ]
+        },
+        {
+            "filename_prefix": "",
+            "format_specifier": {
+                "decimal": 6,
+                "integer": 3
+            },
+            "generate_job_file": false,
+            "output_type": "gerber",
+            "outputs": [
+                {
+                    "advanced_options": {
+                        "mirror": false,
+                        "offset_x": 0,
+                        "offset_y": 0,
+                        "rotate": false,
+                        "upside_down": false
+                    },
+                    "board_outline": true,
+                    "config": {
+                        "file_function": "Profile",
+                        "plating": "non-plated"
+                    },
+                    "filename_format": "%N.GML",
+                    "layers": [
+                        20
+                    ],
+                    "milling": true,
+                    "name": "Board Outline",
+                    "polarity": "positive",
+                    "type": "gerber_layer"
+                },
+                {
+                    "advanced_options": {
+                        "mirror": false,
+                        "offset_x": 0,
+                        "offset_y": 0,
+                        "rotate": false,
+                        "upside_down": false
+                    },
+                    "board_outline": false,
+                    "config": {
+                        "file_function": "Copper",
+                        "layer": 1,
+                        "layer_details": "mixed",
+                        "layer_type": "top"
+                    },
+                    "filename_format": "%N.GTL",
+                    "layers": [
+                        1,
+                        17,
+                        18
+                    ],
+                    "milling": false,
+                    "name": "Top Copper Layer",
+                    "polarity": "positive",
+                    "type": "gerber_layer"
+                },
+                {
+                    "advanced_options": {
+                        "mirror": false,
+                        "offset_x": 0,
+                        "offset_y": 0,
+                        "rotate": false,
+                        "upside_down": false
+                    },
+                    "board_outline": false,
+                    "config": {
+                        "file_function": "Copper",
+                        "layer": 2,
+                        "layer_details": "mixed",
+                        "layer_type": "Bottom"
+                    },
+                    "filename_format": "%N.GBL",
+                    "layers": [
+                        16,
+                        17,
+                        18
+                    ],
+                    "milling": false,
+                    "name": "Bottom Copper Layer",
+                    "polarity": "positive",
+                    "type": "gerber_layer"
+                }
+            ],
+            "version": "RS274X"
+        },
+        {
+            "filename_prefix": "",
+            "output_type": "drawing",
+            "outputs": [
+            ]
+        }
+    ],
+    "timestamp": "2019-02-10T23:40:18",
+    "type": "EAGLE CAM job",
+    "units": "imperial",
+    "version": "8.6.0"
+}
