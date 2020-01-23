@@ -1,28 +1,40 @@
 #include <msp430.h>
 
-#define CLOCKWISE 0
-#define COUNTERCLOCKWISE 1
+#define INSIDE 0
+#define OUTSIDE 1
 
 /* -------------------------------------------- *
-   next_led(int direction)
+   next_led(unsigned char *v1, unsigned char *v2, int inside)
 
 Arguments:
-    - direction - CLOCKWISE or COUNTERCLOCKWISE
+    - *v1 and *v2 are pointers to the values for port 1 and port 2
+        the function updates them to the next proper value in sequence
+        
+    - inside - INSIDE or OUTSIDE
 
-Returns: the next LED in sequence in the given direction
-    - unsigned int - lower byte maps to Port 2 pins
-        and upper byte maps to Port 1 pins.
 
  * -------------------------------------------- */
 
-unsigned int next_led(int direction)
+void next_led(unsigned char *v1, unsigned char *v2, int inside)
 {
   static unsigned int led = 0x00;
+  static unsigned int first = 1;
 
   // CODE
-  led = led ^ 0xC0FF; // replace this line!!
 
-  return led;
+  led = 0x3F;
+
+  *v1 = ~led;
+
+  if (first) {
+    *v2 ^= 0x36;
+    first = 1;
+  }
+  else {
+    first = 0;
+  }
+  
+  return;
 }
 
 int main(void)
@@ -39,39 +51,30 @@ int main(void)
 
 
   // ------ ???
-  P1DIR = 0xC0;                            // ?
-  P2DIR = ;                                // ?
-  P1OUT = 0;
-  P2OUT = 0;
+  P1DIR = 0x3F;                            // ?
+  P2DIR = 0x36;                            // ?
+  
 
-
-  // ------ ???
-  P1IE  |= BIT2;     // ?
-  P1IES |= BIT2;     // ?
-  P1IFG &= ~BIT2;    // ?
-
-
-  int value;
-  int p1, p2;
-  int direction = CLOCKWISE;
+  int inside = 0;
+  unsigned char p1, p2;
   int i;
 
+  p1 = 0x3F; // For my LEDs, this is the "OFF" condition. If yours are backwards, it will be different!
+  p2 = 0x14; //? (what does changing this do to the default pattern?)
+
+
+  P1OUT = (p1 & 0x3F);
+  P2OUT = (p2 & 0x36);
+  
   while(1) {
-    for (i=0; i < 8*3; i++) {             // ?
+    for (i=0; i < 12; i++) {             // ?
       __bis_SR_register(LPM0_bits + GIE); // ?
 
-      P1OUT &= ~0xC0;                     // ?
-      P2OUT &= ;                          // ?
-      value = next_led(direction);
-      p1 = (value & 0xFF00) >> 8;         // ?
-      p2 = ;                // ?
-      P1OUT |= p1;
-      P2OUT |= p2;
-
+      next_led(&p1, &p2, inside);
+      P1OUT = (p1 & 0x3F);
+      P2OUT = (p2 & 0x36);
     }
-    if (direction == CLOCKWISE)
-      direction = COUNTERCLOCKWISE;
-    else direction = CLOCKWISE;
+    inside = !inside;
   }
 }
 
@@ -86,33 +89,4 @@ void __attribute__ ((interrupt(TIMER0_A0_VECTOR))) Timer_A (void)
 #endif
 {
   __bic_SR_register_on_exit(LPM0_bits);  // ?
-}
-
-
-int asleep = 0;
-
-// Port 1 interrupt service routine
-#if defined(__TI_COMPILER_VERSION__) || defined(__IAR_SYSTEMS_ICC__)
-#pragma vector=PORT1_VECTOR
-__interrupt void Port_1 (void)
-#elif defined(__GNUC__)
-void __attribute__ ((interrupt(PORT1_VECTOR))) Port_1 (void)
-#else
-#error Compiler not supported!
-#endif
-{
-  P1IE  &= ~BIT2;   // ?
-  P1IFG &= ~BIT2;   // ? (what and why?)
-  if (asleep) {
-    asleep = 0;
-    P1IE  |= BIT2;
-    __bic_SR_register_on_exit(LPM4_bits);  // ?
-  }
-  else {
-    P1OUT &= ~0xC0;  // ?
-    P2OUT &= ~0xFF;  // ?
-    asleep = 1;
-    P1IE  |= BIT2;
-    __bis_SR_register_on_exit(LPM4_bits + GIE);
-  }
 }
