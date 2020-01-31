@@ -55,6 +55,13 @@ int main(void)
   P2DIR = 0x36;                            // ?
   
 
+  P1IE  |= BIT7;     // Enable GPIO interrupt for pin 1.7
+  P1IES |= BIT7;     // Select the rising edge for this interrupt
+  P1REN |= BIT7;     // Enable the internal pull-up/pull-down resistor
+  P1OUT |= BIT7;     // Set the internal resistor to be a pull-up.
+                     //   NOTE - ANY TIME WE CHANGE P1OUT WE NEED TO MAKE SURE BIT7 STAYS HIGH!!!
+  P1IFG &= ~BIT7;    // Clear the interrupt flag
+
   int inside = 0;
   unsigned char p1, p2;
   int i;
@@ -63,7 +70,7 @@ int main(void)
   p2 = 0x14; //? (what does changing this do to the default pattern?)
 
 
-  P1OUT = (p1 & 0x3F);
+  P1OUT = (p1 & 0x3F) | BIT7; // Make sure the BIT7 pull-up stays enabled
   P2OUT = (p2 & 0x36);
   
   while(1) {
@@ -71,7 +78,7 @@ int main(void)
       __bis_SR_register(LPM0_bits + GIE); // ?
 
       next_led(&p1, &p2, inside);
-      P1OUT = (p1 & 0x3F);
+      P1OUT = (p1 & 0x3F) | BIT7; // Make sure the BIT7 pull-up stays enabled
       P2OUT = (p2 & 0x36);
     }
     inside = !inside;
@@ -89,4 +96,33 @@ void __attribute__ ((interrupt(TIMER0_A0_VECTOR))) Timer_A (void)
 #endif
 {
   __bic_SR_register_on_exit(LPM0_bits);  // ?
+}
+
+
+int asleep = 0;
+
+// Port 1 interrupt service routine
+#if defined(__TI_COMPILER_VERSION__) || defined(__IAR_SYSTEMS_ICC__)
+#pragma vector=PORT1_VECTOR
+__interrupt void Port_1 (void)
+#elif defined(__GNUC__)
+void __attribute__ ((interrupt(PORT1_VECTOR))) Port_1 (void)
+#else
+#error Compiler not supported!
+#endif
+{
+  P1IE  &= ~BIT7;   // Disable the interrupt (so we don't have to worry about the button triggering twice by accident)
+  P1IFG &= ~BIT7;   // Clear the flag!!!!
+  if (asleep) {
+    asleep = 0;
+    P1IE  |= BIT7; // Re-enable interrupt
+    __bic_SR_register_on_exit(LPM4_bits);  // Leave LPM4
+  }
+  else {
+    P1OUT = 0 | BIT7; // Turn off LEDs, but make sure the BIT7 pull-up stays enabled
+    P2OUT = 0;
+    asleep = 1;
+    P1IE  |= BIT7; // Re-enable interrupt
+    __bis_SR_register_on_exit(LPM4_bits + GIE); // Go into LPM4
+  }
 }
