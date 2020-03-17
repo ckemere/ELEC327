@@ -39,7 +39,7 @@
 <layer number="28" name="bValues" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="29" name="tStop" color="7" fill="3" visible="no" active="yes"/>
 <layer number="30" name="bStop" color="7" fill="6" visible="no" active="yes"/>
-<layer number="31" name="tCream" color="7" fill="4" visible="no" active="yes"/>
+<layer number="31" name="tCream" color="7" fill="4" visible="yes" active="yes"/>
 <layer number="32" name="bCream" color="7" fill="5" visible="no" active="yes"/>
 <layer number="33" name="tFinish" color="6" fill="3" visible="no" active="yes"/>
 <layer number="34" name="bFinish" color="6" fill="6" visible="no" active="yes"/>
@@ -162,6 +162,19 @@
 <hole x="30.48" y="55.88" drill="2.54"/>
 <hole x="55.88" y="30.48" drill="2.54"/>
 <text x="30.48" y="52.07" size="2.1844" layer="1" font="vector" ratio="16" align="center">Simon 2020</text>
+<circle x="30.48" y="55.88" radius="1.27" width="0" layer="29"/>
+<polygon width="0.1524" layer="31">
+<vertex x="29.21" y="55.88" curve="90"/>
+<vertex x="30.48" y="54.61" curve="90"/>
+<vertex x="31.75" y="55.88" curve="90"/>
+<vertex x="30.48" y="57.15" curve="90"/>
+</polygon>
+<polygon width="0.1524" layer="31">
+<vertex x="54.61" y="30.48" curve="90"/>
+<vertex x="55.88" y="29.21" curve="90"/>
+<vertex x="57.15" y="30.48" curve="90"/>
+<vertex x="55.88" y="31.75" curve="90"/>
+</polygon>
 </plain>
 <libraries>
 <library name="ELEC327">
