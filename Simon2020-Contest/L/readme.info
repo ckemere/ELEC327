@@ -1,0 +1,13 @@
+Architecture and approach:
+Functionally this game is quite simple. Upon start it goes into a waiting mode, then when a button is pressed it exits waiting mode and changes the mode to playing. A series of two bit numbers are psudorandomly generated to decide what square is to be lit with it's accompanying sound. After the sequence is played the player presses a button within a certain time to be checked against the same psudorandom sequence. If the press is incorrect or missing the game state is changed to loss until reset via another button press or power cycle. If the press(es) is correct the turn is advanced until the max number of turns, after which the game state changes to win reset via another button press or power cycle. The sound is provided via the previous lab's playsound() function and the led's are lit according to one of several predefined patterns in sendled(), which is structured in the same way as previous SPI labs.
+
+Score:
+Maximum points (130) or whatever is needed to secure an A because it meets all rubric points and with all the breakdowns I've had these last several weeks it would be nice to know it wasn't for nothing
+
+Changing things: (in main.c unless otherwise noted)
+Number of turns required to win can be changed via Q on line 9
+Starting turn can be changed via P on lines 10, 79, and 92
+Tone frequencies can be changed via quad0-quad3 on lines 13-16 (Freq/12000)
+Timeout for input can be changed via TA0CCR0 on line 129
+Speed of light/sound display can be changed via TA0CCR0 on line 24 of playsound.c
+Displayed light and sound patterns for start up, loss, and win can be changed simply by changing the arguments for sendled() and playsound() in their respective while loops
