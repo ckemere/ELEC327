@@ -6,13 +6,13 @@ int main(void)
   WDTCTL = WDTPW + WDTHOLD;                 // Stop WDT
   P1DIR |= 0x01;                            // P1.0 output
   CCTL0 = CCIE;                             // CCR0 interrupt enabled
-  CCR0 = 50000;
+  CCR0 = 0x100;
   TACTL = TASSEL_2 + MC_2;                  // SMCLK, contmode
 
   while (1) {
     __bis_SR_register(LPM0_bits + GIE);       // Enter LPM0 w/ interrupt
     P1OUT ^= 0x01;                            // Toggle P1.0
-    CCR0 += 50000;                            // Add Offset to CCR0
+    CCR0 += 0x100;                            // Add Offset to CCR0
   }
 
 }
