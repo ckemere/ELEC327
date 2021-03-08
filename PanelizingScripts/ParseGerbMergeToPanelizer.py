@@ -42,7 +42,7 @@ import xml.etree.ElementTree as ET
 
 paneldata = ET.Element('GerberLayoutSet')
 loaded_outlines = ET.SubElement(paneldata, 'LoadedOutlines')
-for name in student_names:
+for name in set(student_names):
   outline_string = ET.SubElement(loaded_outlines,'string')
   outline_string.text = '\\'.join(['Z:',base_path, name+'.zip'])
 
