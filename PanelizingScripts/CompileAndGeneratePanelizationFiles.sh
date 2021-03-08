@@ -1,5 +1,9 @@
 #!/bin/bash
-PATH=$PATH:/Applications/EAGLE-8.6.0/EAGLE.app/Contents/MacOS
+
+# This script prepares the configuration files for gerbmerge to run on a set of Eagle board
+# files.
+
+PATH=$PATH:/home/ckemere/Code/eagle-9.6.2/
 
 counter=1;
 SubmissionCounter=0;
@@ -72,14 +76,16 @@ do
   echo $student;
   echo "[$student]" >> layout_gen.cfg;
 
-  EAGLE -X -d GERBER_RS274X -o "$student.GTL" "$prefix.brd" Top Pads Vias Dimension > /dev/null
-  EAGLE -X -d GERBER_RS274X -o "$student.GBL" "$prefix.brd" Bottom Pads Vias > /dev/null
-  EAGLE -X -d GERBER_RS274X -o "$student.GML" "$prefix.brd" Dimension Milling > /dev/null
-  EAGLE -X -d EXCELLON_24 -o "$student.TXT" "$prefix.brd" Drills Holes > /dev/null
+  # The CAM-Gerber-Panelizer cam file does all the layers.
+  eagle -X -dCAMJOB -j/home/ckemere/Code/elec327/PCBs/CAM-Gerber-Panelizer.cam -o. "$prefix.brd"
+  # eagle -X -dCAMJOB -j/home/ckemere/Code/elec327/PCBs/AdvancedCircuitsBarebones.cam -o. "$prefix.brd"
+
+  # Also zip each student in case that we want to run GerberTools Panelizer later.
+  zip "$student.zip" $student.G* $student.TXT
 
   echo "*TopLayer=$student.GTL" >> layout_gen.cfg;
   echo "*BottomLayer=$student.GBL" >> layout_gen.cfg;
-  echo "BoardOutline=$student.GML" >> layout_gen.cfg;
+  echo "BoardOutline=$student.GKO" >> layout_gen.cfg;
   echo "Drills=$student.TXT" >> layout_gen.cfg;
 
   counter=$[counter + 1];
