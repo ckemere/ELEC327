@@ -24,15 +24,16 @@ student_names = [nm.split('*')[0] for nm in df.iloc[:,0]]
 
 is_rotated = [True if len(nm.split('*')) > 1 else False for nm in df.iloc[:,0]]
 
-df['student_name'] = student_names
+#df['student_name'] = student_names
 df['is_rotated'] = is_rotated
 
-df['new_x'] = df['x'] + is_rotated*df['w']  # For 90 degree rotations the bottom left corner becomes the bottom right, so we need to shift the effective origin over by the width
 
 df['xshift'] = df['orig_minx']
 df['yshift'] = df['orig_miny']
-df.xshift[df.xshift == 9999999.0] = 0.0
-df.yshift[df.yshift == 9999999.0] = 0.0
+df.xshift[df.xshift == 9999999.0] = df.minx[df.xshift == 9999999.0]
+df.yshift[df.yshift == 9999999.0] = df.miny[df.yshift == 9999999.0]
+
+df['new_x'] = df['x'] + is_rotated*df['w']  # For 90 degree rotations the bottom left corner becomes the bottom right, so we need to shift the effective origin over by the width
 
 print(df)
 
@@ -57,7 +58,9 @@ for idx, name in enumerate(student_names):
      ET.SubElement(center, 'X').text = '{}'.format((df.new_x.iloc[idx] - df.xshift.iloc[idx]/100000)*25.4)
      ET.SubElement(center, 'Y').text = '{}'.format((df.y.iloc[idx] - df.yshift.iloc[idx]/100000)*25.4)
    else:
-     ET.SubElement(center, 'X').text = '{}'.format((df.new_x.iloc[idx] - df.yshift.iloc[idx]/100000)*25.4)
+     # ET.SubElement(center, 'X').text = '{}'.format((df.new_x.iloc[idx])*25.4)
+     # ET.SubElement(center, 'Y').text = '{}'.format((df.y.iloc[idx])*25.4)
+     ET.SubElement(center, 'X').text = '{}'.format((df.new_x.iloc[idx] + df.yshift.iloc[idx]/100000)*25.4)
      ET.SubElement(center, 'Y').text = '{}'.format((df.y.iloc[idx] - df.xshift.iloc[idx]/100000)*25.4)
 
    angle = ET.SubElement(gerber_instance, 'Angle')
