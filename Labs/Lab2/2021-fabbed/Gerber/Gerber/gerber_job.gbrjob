@@ -1,0 +1,24 @@
+{
+    "Header": {
+        "Comment": "All values are metric (mm)",
+        "CreationDate": "2021-01-20T20:14:47Z",
+        "GenerationSoftware": {
+            "Application": "EAGLE",
+            "Vendor": "Autodesk",
+            "Version": "9.6.2"
+        },
+        "Part": "Single"
+    },
+    "Overall": {
+        "BoardThickness": 1.671119,
+        "LayerNumber": 2,
+        "Name": {
+            "ProjectId": "Pendant"
+        },
+        "Owner": "Caleb Kemere <caleb.kemere@rice.edu>",
+        "Size": {
+            "X": 78.378975,
+            "Y": 78.378975
+        }
+    }
+}
