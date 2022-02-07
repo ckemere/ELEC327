@@ -11067,6 +11067,11 @@ Source: www.kingbright.com</description>
 <sheets>
 <sheet>
 <plain>
+<text x="73.66" y="175.26" size="1.778" layer="91">Connect your Accelerometer
+to these I2CSDA and I2CSDL
+nets. You can also add another
+connection for the interrupt
+line.</text>
 </plain>
 <instances>
 <instance part="U$2" gate="G$1" x="-22.86" y="172.72" smashed="yes">
@@ -11144,16 +11149,16 @@ Source: www.kingbright.com</description>
 <instance part="GND2" gate="1" x="76.2" y="111.76" smashed="yes">
 <attribute name="VALUE" x="73.66" y="109.22" size="1.778" layer="96"/>
 </instance>
-<instance part="I2CPULLUP1" gate="G$1" x="55.88" y="198.12" smashed="yes" rot="R270">
-<attribute name="NAME" x="57.3786" y="201.93" size="1.778" layer="95" rot="R270"/>
-<attribute name="VALUE" x="52.578" y="201.93" size="1.778" layer="96" rot="R270"/>
+<instance part="I2CPULLUP1" gate="G$1" x="-66.04" y="119.38" smashed="yes" rot="R270">
+<attribute name="NAME" x="-64.5414" y="123.19" size="1.778" layer="95" rot="R270"/>
+<attribute name="VALUE" x="-69.342" y="123.19" size="1.778" layer="96" rot="R270"/>
 </instance>
-<instance part="I2C_PULLUP2" gate="G$1" x="66.04" y="187.96" smashed="yes" rot="R270">
-<attribute name="NAME" x="67.5386" y="191.77" size="1.778" layer="95" rot="R270"/>
-<attribute name="VALUE" x="62.738" y="191.77" size="1.778" layer="96" rot="R270"/>
+<instance part="I2C_PULLUP2" gate="G$1" x="-55.88" y="109.22" smashed="yes" rot="R270">
+<attribute name="NAME" x="-54.3814" y="113.03" size="1.778" layer="95" rot="R270"/>
+<attribute name="VALUE" x="-59.182" y="113.03" size="1.778" layer="96" rot="R270"/>
 </instance>
-<instance part="VDD4" gate="G$1" x="66.04" y="210.82" smashed="yes">
-<attribute name="VALUE" x="63.5" y="208.28" size="1.778" layer="96" rot="R90"/>
+<instance part="VDD4" gate="G$1" x="-55.88" y="132.08" smashed="yes">
+<attribute name="VALUE" x="-58.42" y="129.54" size="1.778" layer="96" rot="R90"/>
 </instance>
 </instances>
 <busses>
@@ -11230,13 +11235,13 @@ Source: www.kingbright.com</description>
 </segment>
 <segment>
 <pinref part="I2CPULLUP1" gate="G$1" pin="1"/>
-<wire x1="55.88" y1="203.2" x2="55.88" y2="205.74" width="0.1524" layer="91"/>
-<wire x1="55.88" y1="205.74" x2="66.04" y2="205.74" width="0.1524" layer="91"/>
+<wire x1="-66.04" y1="124.46" x2="-66.04" y2="127" width="0.1524" layer="91"/>
+<wire x1="-66.04" y1="127" x2="-55.88" y2="127" width="0.1524" layer="91"/>
 <pinref part="VDD4" gate="G$1" pin="VDD"/>
-<wire x1="66.04" y1="205.74" x2="66.04" y2="208.28" width="0.1524" layer="91"/>
+<wire x1="-55.88" y1="127" x2="-55.88" y2="129.54" width="0.1524" layer="91"/>
 <pinref part="I2C_PULLUP2" gate="G$1" pin="1"/>
-<wire x1="66.04" y1="205.74" x2="66.04" y2="193.04" width="0.1524" layer="91"/>
-<junction x="66.04" y="205.74"/>
+<wire x1="-55.88" y1="127" x2="-55.88" y2="114.3" width="0.1524" layer="91"/>
+<junction x="-55.88" y="127"/>
 </segment>
 </net>
 <net name="TEST" class="0">
@@ -11300,9 +11305,14 @@ Source: www.kingbright.com</description>
 <label x="17.78" y="167.64" size="1.778" layer="95"/>
 </segment>
 <segment>
-<wire x1="50.8" y1="193.04" x2="55.88" y2="193.04" width="0.1524" layer="91"/>
+<wire x1="-71.12" y1="114.3" x2="-66.04" y2="114.3" width="0.1524" layer="91"/>
 <pinref part="I2CPULLUP1" gate="G$1" pin="2"/>
-<label x="43.18" y="193.04" size="1.778" layer="95"/>
+<label x="-78.74" y="114.3" size="1.778" layer="95"/>
+</segment>
+<segment>
+<wire x1="66.04" y1="185.42" x2="45.72" y2="185.42" width="0.1524" layer="91"/>
+<wire x1="45.72" y1="185.42" x2="45.72" y2="193.04" width="0.1524" layer="91"/>
+<label x="48.26" y="185.42" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="I2CSCL" class="0">
@@ -11312,11 +11322,16 @@ Source: www.kingbright.com</description>
 <label x="17.78" y="165.1" size="1.778" layer="95"/>
 </segment>
 <segment>
-<wire x1="50.8" y1="182.88" x2="66.04" y2="182.88" width="0.1524" layer="91"/>
+<wire x1="-71.12" y1="104.14" x2="-55.88" y2="104.14" width="0.1524" layer="91"/>
 <pinref part="I2C_PULLUP2" gate="G$1" pin="2"/>
-<wire x1="66.04" y1="182.88" x2="68.58" y2="182.88" width="0.1524" layer="91"/>
-<junction x="66.04" y="182.88"/>
-<label x="50.8" y="182.88" size="1.778" layer="95"/>
+<wire x1="-55.88" y1="104.14" x2="-53.34" y2="104.14" width="0.1524" layer="91"/>
+<junction x="-55.88" y="104.14"/>
+<label x="-71.12" y="104.14" size="1.778" layer="95"/>
+</segment>
+<segment>
+<wire x1="66.04" y1="175.26" x2="45.72" y2="175.26" width="0.1524" layer="91"/>
+<wire x1="45.72" y1="175.26" x2="45.72" y2="180.34" width="0.1524" layer="91"/>
+<label x="48.26" y="175.26" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="LED1" class="0">
@@ -11373,6 +11388,10 @@ Source: www.kingbright.com</description>
 </schematic>
 </drawing>
 <compatibility>
+<note version="6.3" minversion="6.2.2" severity="warning">
+Since Version 6.2.2 text objects can contain more than one line,
+which will not be processed correctly with this version.
+</note>
 <note version="8.2" severity="warning">
 Since Version 8.2, EAGLE supports online libraries. The ids
 of those online libraries will not be understood (or retained)
