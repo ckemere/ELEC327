@@ -11364,6 +11364,7 @@ Source: www.kingbright.com</description>
 <segment>
 <pinref part="LED4" gate="G$1" pin="A"/>
 <wire x1="40.64" y1="121.92" x2="30.48" y2="121.92" width="0.1524" layer="91"/>
+<label x="30.48" y="121.92" size="1.778" layer="95"/>
 </segment>
 </net>
 </nets>
