@@ -11293,30 +11293,6 @@ Source: www.kingbright.com</description>
 <wire x1="55.88" y1="121.92" x2="48.26" y2="121.92" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$5" class="0">
-<segment>
-<pinref part="LED1" gate="G$1" pin="A"/>
-<wire x1="40.64" y1="157.48" x2="27.94" y2="157.48" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$6" class="0">
-<segment>
-<pinref part="LED2" gate="G$1" pin="A"/>
-<wire x1="40.64" y1="144.78" x2="30.48" y2="144.78" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$7" class="0">
-<segment>
-<pinref part="LED3" gate="G$1" pin="A"/>
-<wire x1="40.64" y1="132.08" x2="30.48" y2="132.08" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$8" class="0">
-<segment>
-<pinref part="LED4" gate="G$1" pin="A"/>
-<wire x1="40.64" y1="121.92" x2="30.48" y2="121.92" width="0.1524" layer="91"/>
-</segment>
-</net>
 <net name="I2CSDA" class="0">
 <segment>
 <pinref part="U$2" gate="G$1" pin="15"/>
@@ -11349,12 +11325,22 @@ Source: www.kingbright.com</description>
 <wire x1="-48.26" y1="162.56" x2="-60.96" y2="162.56" width="0.1524" layer="91"/>
 <label x="-60.96" y="162.56" size="1.778" layer="95"/>
 </segment>
+<segment>
+<pinref part="LED1" gate="G$1" pin="A"/>
+<wire x1="40.64" y1="157.48" x2="27.94" y2="157.48" width="0.1524" layer="91"/>
+<label x="27.94" y="157.48" size="1.778" layer="95"/>
+</segment>
 </net>
 <net name="LED2" class="0">
 <segment>
 <pinref part="U$2" gate="G$1" pin="9"/>
 <wire x1="-48.26" y1="160.02" x2="-60.96" y2="160.02" width="0.1524" layer="91"/>
 <label x="-60.96" y="160.02" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="LED2" gate="G$1" pin="A"/>
+<wire x1="40.64" y1="144.78" x2="30.48" y2="144.78" width="0.1524" layer="91"/>
+<label x="30.48" y="144.78" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="LED3" class="0">
@@ -11363,12 +11349,21 @@ Source: www.kingbright.com</description>
 <wire x1="-48.26" y1="157.48" x2="-60.96" y2="157.48" width="0.1524" layer="91"/>
 <label x="-60.96" y="157.48" size="1.778" layer="95"/>
 </segment>
+<segment>
+<pinref part="LED3" gate="G$1" pin="A"/>
+<wire x1="40.64" y1="132.08" x2="30.48" y2="132.08" width="0.1524" layer="91"/>
+<label x="30.48" y="132.08" size="1.778" layer="95"/>
+</segment>
 </net>
 <net name="LED4" class="0">
 <segment>
 <pinref part="U$2" gate="G$1" pin="11"/>
 <wire x1="0" y1="157.48" x2="12.7" y2="157.48" width="0.1524" layer="91"/>
 <label x="7.62" y="157.48" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="LED4" gate="G$1" pin="A"/>
+<wire x1="40.64" y1="121.92" x2="30.48" y2="121.92" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
