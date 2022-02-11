@@ -17,23 +17,23 @@ int main(void)
 
     // Set up WDT interrupt for helpfulness
 //	WDTCTL = WDTPW | WDTHOLD;	// stop watchdog timer
-	WDTCTL = WDT_ADLY_16;       // WDT interrupt
-	IE1 |= WDTIE;                             // Enable WDT interrupt
+    WDTCTL = WDT_ADLY_16;       // WDT interrupt
+    IE1 |= WDTIE;                             // Enable WDT interrupt
 
     // Set up a timer for seconds!
     TA0CTL = TASSEL_1 + MC_1;     // ACLK, upmode
-    TA0CCR0 = 12000;                 // Interrupt should happen every ~12 kHz / 12000
+    TA0CCR0 = 12000;              // Interrupt should happen every ~12 kHz / 12000
     TA0CCTL0 = CCIE;              // CCR0 interrupt enabled
 
 	// Switches are pins 2.5 and 1.7. They pull low when depressed.
     // SW1
-    P2DIR &= ~SWITCH_1_MASK;
-    P2REN = SWITCH_1_MASK;
-    P1DIR &= ~SWITCH_2_MASK;
+    P2DIR &= ~SWITCH_1_MASK; // Set pin 2.5 to input
+    P2REN = SWITCH_1_MASK;   // Set pull-up/pull-down resistor
+    P2OUT |= SWITCH_1_MASK;  // Set resistor to be a pull-up
 
     // SW2
+    P1DIR &= ~SWITCH_2_MASK;
     P1REN = SWITCH_2_MASK;
-    P2OUT |= SWITCH_1_MASK;
     P1OUT |= SWITCH_2_MASK;
 
 
@@ -95,6 +95,6 @@ void __attribute__ ((interrupt(TIMER0_A0_VECTOR))) Timer_A (void)
 #error Compiler not supported!
 #endif
 {
-    second_flag = 1;
+    second_flag = 1; // This flag will signal to our main loop what woke us up!
     __bic_SR_register_on_exit(LPM3_bits);     // Clear LPM3 bits from 0(SR)
 }
