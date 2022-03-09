@@ -47,10 +47,10 @@ void reset_button_sequence(unsigned int initial_value) {
 }
 /* ---------------------------------------------------------------- */
 
-uint8_t blue[] = {0xF0, 10, 0, 0};
-uint8_t green[] = {0xF0, 0, 10, 0};
-uint8_t red[] = {0xF0, 0, 0, 10};
-uint8_t yellow[] = {0xF0, 0, 10, 10};
+uint8_t red[] = {0xF0, 10, 0, 0};
+uint8_t blue[] = {0xF0, 0, 10, 0};
+uint8_t green[] = {0xF0, 0, 0, 10};
+uint8_t yellow[] = {0xF0, 10, 0, 10};
 uint8_t off[] = {0xE0, 0, 0, 0};
 
 
@@ -81,7 +81,7 @@ int main(void)
     int leds_on = 0;
     uint8_t *LED1, *LED2, *LED3, *LED4;
     int sequence_counter = 0;
-    int sequence_length = 5;  // GRADING: This variable should be changed to test different sequence lengths
+    int sequence_length = 10;  // GRADING: This variable should be changed to test different sequence lengths
     int button;
 
     while (1) {
@@ -125,9 +125,9 @@ int main(void)
         if (state == Lost) {
             // TODO: Make this dynamic + with sound (more interesting) to achieve a better grade!
             LED1 = red;
-            LED2 = red;
-            LED3 = red;
-            LED4 = red;
+            LED2 = blue;
+            LED3 = green;
+            LED4 = yellow;
             rgb_set_LEDs(LED1, LED2, LED3, LED4);
         }
 

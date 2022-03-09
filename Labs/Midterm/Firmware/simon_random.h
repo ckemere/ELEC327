@@ -7,9 +7,11 @@
 #ifndef SIMON_RANDOM_H_
 #define SIMON_RANDOM_H_
 
+#include <stdint.h>
+
 /* Random number generation */
 // -------------------------------------
-void srand(unsigned int seed);
-unsigned int rand();
+void srand(uint16_t seed);
+uint16_t rand();
 
 #endif
