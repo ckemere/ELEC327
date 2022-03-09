@@ -47,6 +47,13 @@ void reset_button_sequence(unsigned int initial_value) {
 }
 /* ---------------------------------------------------------------- */
 
+uint8_t blue[] = {0xF0, 10, 0, 0};
+uint8_t green[] = {0xF0, 0, 10, 0};
+uint8_t red[] = {0xF0, 0, 0, 10};
+uint8_t yellow[] = {0xF0, 0, 10, 10};
+uint8_t off[] = {0xE0, 0, 0, 0};
+
+
 
 int timer_wakeup_flag = 0;
 int button_wakeup_flag = 0;
@@ -66,24 +73,24 @@ int main(void)
     /* To make a functional Simon, you'll need to seed the random number generation system
        randomly! */
     int initial_random_seed = 10;
-    reset_button_sequence(initial_random_seed); // TODO: Add code to make the initial seed random! 
-    
+    reset_button_sequence(initial_random_seed); // TODO: Add code to make the initial seed random!
+
 
     _enable_interrupts();
-    
+
     int leds_on = 0;
-    char *LED1, *LED2, *LED3, *LED4;
+    uint8_t *LED1, *LED2, *LED3, *LED4;
     int sequence_counter = 0;
     int sequence_length = 5;  // GRADING: This variable should be changed to test different sequence lengths
     int button;
-    
+
     while (1) {
 
-        /* This template is a potentially a place to start. What it provides is a 
+        /* This template is a potentially a place to start. What it provides is a
            foundation of a main loop which gets woken up either by a timer (the WDT)
-           or by a button press (assuming you enable the button interrupts). 
+           or by a button press (assuming you enable the button interrupts).
            But it needs more code:
-           
+
           - SOUND!!!
 
           - Win state

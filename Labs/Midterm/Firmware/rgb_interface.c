@@ -46,3 +46,12 @@ void rgb_send_end() {
     rgb_send_frame(end_frame, true);
 }
 
+void rgb_set_LEDs(const uint8_t *LED1, const uint8_t *LED2, const uint8_t *LED3, const uint8_t *LED4) {
+    rgb_send_start();
+    rgb_send_frame(LED1, false);
+    rgb_send_frame(LED2, false);
+    rgb_send_frame(LED3, false);
+    rgb_send_frame(LED4, false);
+    rgb_send_end();
+}
+

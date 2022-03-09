@@ -9,8 +9,7 @@
 #define RGB_INTERFACE_H_
 
 void rgb_init_spi(void);
-void rgb_send_frame(const uint8_t *frame1, bool wait_for_completion);
-void rgb_send_start();
-void rgb_send_end();
+void rgb_set_LEDs(const uint8_t *LED1, const uint8_t *LED2, const uint8_t *LED3, const uint8_t *LED4);
+
 
 #endif /* RGB_INTERFACE_H_ */

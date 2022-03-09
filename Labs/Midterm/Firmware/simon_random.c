@@ -13,8 +13,6 @@
 /*  */
 // -------------------------------------
 #include <stdint.h>
-#include <stdbool.h>
-#include "rgb_interface.h"
 #include "simon_random.h"
 
 
