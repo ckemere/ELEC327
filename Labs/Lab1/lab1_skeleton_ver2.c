@@ -1,19 +1,24 @@
+#include <msp430.h> 
 
-#include <msp430.h>
+
 
 int main(void)
 {
-  WDTCTL = WDTPW + WDTHOLD;                 // Stop WDT
-  P1DIR |= 0x01;                            // P1.0 output
-  TA0CCTL0 = CCIE;                          // TA0CCR0 interrupt enabled
-  TA0CCR0 = 0x100;
-  TA0CTL = TASSEL_2 + MC_2; // SMCLK, contmode
+    WDTCTL = WDTPW | WDTHOLD;               // Stop watchdog timer
 
-  while (1) {
-    __bis_SR_register(LPM0_bits + GIE);       // Enter LPM0 w/ interrupt
-    P1OUT ^= 0x01;                            // Toggle P1.0
-    TA0CCR0 += 0x100;                         // Add Offset to TA0CCR0
-  }
+    PM5CTL0 &= ~LOCKLPM5;                   // Disable the GPIO power-on default high-impedance mode
+                                            // to activate previously configured port settings  P1DIR |= 0x01;                            // P1.0 output
+    TA0CCTL0 = CCIE;                        // TA0CCR0 interrupt enabled
+    TA0CCR0 = 0x2000;
+    TA0CTL = TASSEL_2 + MC_1 + ID_3; // SMCLK, up-mode, Divide clock by 8
+
+    P1DIR |= 0x01;                          // Set P1.0 to output direction
+
+    __bis_SR_register(GIE);       // Enable interrupt
+    while (1) {
+        __bis_SR_register(LPM0_bits);       // Enter LPM0
+        P1OUT ^= 0x01;                            // Toggle P1.0
+    }
 
 }
 
