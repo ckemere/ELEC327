@@ -17,6 +17,12 @@
 void main(void){
     WDTCTL = WDTPW | WDTHOLD;   // Stop WDT
 
+#ifdef PM5CTL0
+    // Code needed for FR2433
+    PM5CTL0 &= ~LOCKLPM5;                   // Disable the GPIO power-on default high-impedance mode
+                                            // to activate previously configured port settings  P1DIR |= 0x01;                            // P1.0 output
+
+    // FR2433 specific code to switch DCO to 1 MHz
     __bis_SR_register(SCG0);   // disable frequency-locked loop (FLL)
     CSCTL3 |= SELREF__REFOCLK; // Set REFO as FLL reference source
     CSCTL0 = 0;                // Clear DCO and MOD registers
@@ -25,8 +31,9 @@ void main(void){
     __delay_cycles(3);         // Wait 3 cycles to set
     __bic_SR_register(SCG0);   // enable FLL
     while(CSCTL7 & (FLLUNLOCK0 | FLLUNLOCK1));         // Wait for FLL to lock
+#endif
 
-    PM5CTL0 &= ~LOCKLPM5; // Disable the GPIO power-on default high-impedance mode
+
 
     P1OUT &= BIT0; // ADD COMMENT
     P1DIR |= BIT0; // ADD COMMENT

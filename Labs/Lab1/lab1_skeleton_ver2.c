@@ -6,11 +6,16 @@ int main(void)
 {
     WDTCTL = WDTPW | WDTHOLD;               // Stop watchdog timer
 
+#ifdef PM5CTL0
+    // Code needed for FR2433
     PM5CTL0 &= ~LOCKLPM5;                   // Disable the GPIO power-on default high-impedance mode
                                             // to activate previously configured port settings  P1DIR |= 0x01;                            // P1.0 output
+#endif
+
     TA0CCTL0 = CCIE;                        // TA0CCR0 interrupt enabled
-    TA0CCR0 = 0x2000;
-    TA0CTL = TASSEL_2 + MC_1 + ID_3; // SMCLK, up-mode, Divide clock by 8
+    TA0CCR0 = 32768;
+    TA0CTL = TASSEL_1 + MC_1;               // ACLK, up-mode  - Note! Default ACLK differs by model!
+
 
     P1DIR |= 0x01;                          // Set P1.0 to output direction
 
