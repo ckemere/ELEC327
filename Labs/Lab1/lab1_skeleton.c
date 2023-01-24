@@ -21,7 +21,7 @@
 void main(void) {
     WDTCTL = WDTPW | WDTHOLD;               // Stop watchdog timer
 
-#ifdef PM5CTL0
+#ifdef __MSP430FR2XX_4XX_FAMILY__
     // Code needed for FR2433
     PM5CTL0 &= ~LOCKLPM5;                   // Disable the GPIO power-on default high-impedance mode
                                             // to activate previously configured port settings  P1DIR |= 0x01;                            // P1.0 output
