@@ -6,8 +6,8 @@
  */
 int second_flag = 0; // Timer ISR will use this to signal if a second has elapsed
 
-#define SWITCH_1_MASK 0x20 // Port 2
-#define SWITCH_2_MASK 0x80 // Port 1
+#define SWITCH_1_MASK 0x20 // Port 2.5
+#define SWITCH_2_MASK 0x80 // Port 1.7
 
 int main(void)
 {
