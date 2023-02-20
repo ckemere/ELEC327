@@ -71,10 +71,10 @@ void __attribute__ ((interrupt(TIMER1_A0_VECTOR))) Timer_A (void)
         P2OUT += font[right_num][col_idx-4];
 
     col_idx = col_idx + 1;
-    col = col << 1; // move to the next column
+    col = col >> 1; // move to the next column
 
     if (col_idx > 6) {
-        col = 0x01;
+        col = 0x40;
         col_idx = 0;
     }
 }
