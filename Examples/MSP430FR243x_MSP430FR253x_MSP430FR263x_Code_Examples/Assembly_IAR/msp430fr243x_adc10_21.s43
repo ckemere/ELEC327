@@ -1,0 +1,162 @@
+; --COPYRIGHT--,BSD_EX
+;  Copyright (c) 2014, Texas Instruments Incorporated
+;  All rights reserved.
+; 
+;  Redistribution and use in source and binary forms, with or without
+;  modification, are permitted provided that the following conditions
+;  are met:
+; 
+;  *  Redistributions of source code must retain the above copyright
+;     notice, this list of conditions and the following disclaimer.
+; 
+;  *  Redistributions in binary form must reproduce the above copyright
+;     notice, this list of conditions and the following disclaimer in the
+;     documentation and/or other materials provided with the distribution.
+; 
+;  *  Neither the name of Texas Instruments Incorporated nor the names of
+;     its contributors may be used to endorse or promote products derived
+;     from this software without specific prior written permission.
+; 
+;  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+;  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+;  THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+;  PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+;  CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+;  EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+;  PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+;  OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+;  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+;  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+;  EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+; 
+; ******************************************************************************
+;  
+;                        MSP430 CODE EXAMPLE DISCLAIMER
+; 
+;  MSP430 code examples are self-contained low-level programs that typically
+;  demonstrate a single peripheral function or device feature in a highly
+;  concise manner. For this the code may rely on the device's power-on default
+;  register values and settings such as the clock configuration and care must
+;  be taken when combining code from several examples to avoid potential side
+;  effects. Also see www.ti.com/grace for a GUI- and www.ti.com/msp430ware
+;  for an API functional library-approach to peripheral configuration.
+; 
+; --/COPYRIGHT--
+;******************************************************************************
+;  MSP430FR24xx Demo - ADC10, Window Comparator, 1.5V ref, Timer trigger, DCO
+;
+;  Description: This example works on Repeat-Single-Channel Mode.
+;  A1 is sampled in every 0.5s using the TA1.1 trigger.
+;  Window comparator is used to generate interrupts to indicate when the input
+;  voltage goes above the High_Threshold or below the Low_Threshold or
+;  is inbetween the high and low thresholds. TimerA1 is used as an interval 
+;  timer used to control the LED at P1.0 to toggle slow/fast or turn off
+;  according to the ADC10 Hi/Lo/IN interupts.
+;  ACLK = XT1 = 32768Hz, MCLK = SMCLK = default DCODIV ~1MHz.
+;
+;               MSP430FR2433
+;            -----------------
+;        /|\|                 |
+;         | |                 | 
+;         --|RST              |
+;           |                 |
+;       >---|P1.1/A1     P1.0 |--> LED 
+;
+;
+;  Ling Zhu
+;  Texas Instruments Inc.
+;  Nov 2015
+;  Built with IAR Embedded Workbench v6.20
+;******************************************************************************
+#include <msp430.h>
+;-------------------------------------------------------------------------------
+            RSEG    CSTACK                                  ; Define stack segment
+;-------------------------------------------------------------------------------
+            RSEG    CODE
+;-------------------------------------------------------------------------------
+RESET       mov.w   #SFE(CSTACK),SP                         ; Initialize stackpointer
+StopWDT     mov.w   #WDTPW|WDTHOLD,&WDTCTL                  ; Stop WDT
+
+SetupP1     bis.b   #BIT0,&P1DIR                            ; P1.0 output
+            bic.b   #BIT0,&P1OUT                            ; Clear P1.0
+            bis.w   #ADCPCTL1,&SYSCFG2                      ; ADC A1 pin
+            bis.b   #BIT0|BIT1,&P2SEL0                      ; P2.0~P2.1: crystal pins
+            bic.w   #LOCKLPM5,PM5CTL0                       ; Unlock I/O pins
+            
+SetupXT1    mov.w   #SELA__XT1CLK,&CSCTL4                   ; Set ACLK = XT1; MCLK = SMCLK = DCO
+OSCFlag     bic.w   #XT1OFFG|DCOFFG,&CSCTL7                 ; Clear XT1 fault flag
+            bic.w   #OFIFG,&SFRIFG1                         ; Clear fault flags
+            bit.w   #OFIFG,&SFRIFG1                         ; Test oscilator fault flag
+            jnz     OSCFlag
+ 
+SetupADC    bis.w   #ADCSHT_2|ADCMSC|ADCON,&ADCCTL0         ; ADCON
+            bis.w   #ADCSHP|ADCSHS_2|ADCCONSEQ_2,&ADCCTL1   ; rpt single ch; TA1.1 trigger
+            bis.w   #ADCRES,&ADCCTL2                        ; 10-bit conversion results
+            bis.w   #ADCINCH_1|ADCSREF_1,&ADCMCTL0          ; Vref+, A1
+            mov.w   #682,&ADCHI                             ; Window Comparator Hi-threshold ~2V
+            mov.w   #341,&ADCLO                             ; Window Comparator Lo-threshold ~1V
+            bis.w   #ADCHIIE|ADCLOIE|ADCINIE,&ADCIE         ; Enable ADC conv complete interrupt
+
+SetupREF    mov.b   #PMMPW_H,&PMMCTL0_H                     ; Unlock the PMM registers
+            bis.w   #INTREFEN,&PMMCTL2                      ; Enable internal reference
+            mov.w   #200,R15                                ; Delay ~400 cycles for reference settling
+L2          dec.w   R15                                     ; Decrement R15
+            jnz     L2                                      ; Delay over?
+            
+SetupTA0    bis.w   #CCIE,&TA0CCTL0                         ; CCR0 interrupt enabled
+            bis.w   #TACLR|TASSEL_1,&TA0CTL                 ; ACLK, clear TAR
+
+SetupTA1    mov.w   #3FFFh,&TA1CCR0                         ; PWM Period
+            mov.w   #1FFFh,&TA1CCR1                         ; Duty cycle TA1.1
+            bis.w   #OUTMOD_4,&TA1CCTL1                     ; TA0CCR1 toggle
+            bis.w   #TASSEL_1|MC_1|TACLR,&TA1CTL            ; ACLK, up mode
+            
+Mainloop    bis.w   #ADCENC,&ADCCTL0                        ; Start sampling/conversion
+            nop
+            bis.w   #LPM3+GIE,SR                            ; Enter LPM3 w/ interrupts
+            nop
+
+;-------------------------------------------------------------------------------
+ADC_ISR;      ISR for ADC
+;-------------------------------------------------------------------------------
+            add      &ADCIV,PC                              ; Add offset to PC
+            reti                                            ; No Interrupt
+            reti                                            ; Conversion result overflow
+            reti                                            ; Conversion time overflow
+            jmp      ADHI                                   ; A1 > 1V
+            jmp      ADLO                                   ; A1 < 0.5V
+            jmp      ADIN                                   ; 0.5V < A1 < 1V
+            reti                                            ; ADCIFG0
+
+ADHI        bic.w    #ADCHIIFG,&ADCIFG                      ; Clear interrupt flag
+            bic.w    #MC_1,&TA0CTL                          ; Turn off timer
+            mov.w    #3E7h,&TA0CCR0                         ; Set timer period for fast toggle
+            bis.w    #MC_1,&TA0CTL
+            reti
+
+ADLO        bic.w    #ADCLOIFG,&ADCIFG                      ; Clear interrupt flag
+            bic.w    #MC_1,&TA0CTL                          ; Turn off timer
+            mov.w    #4E1Fh,&TA0CCR0                        ; Set timer period for slow toggle
+            bis.w    #MC_1,&TA0CTL
+            reti
+
+ADIN        bic.w    #ADCINIFG,&ADCIFG                      ; Clear interrupt flag
+            bic.w    #MC_1,&TA0CTL                          ; Turn off timer
+            bic.b    #BIT0,&P1OUT
+            reti
+
+;-------------------------------------------------------------------------------
+TA0_ISR;    ISR for TIMER A0
+;-------------------------------------------------------------------------------
+            xor.b    #BIT0,&P1OUT                           ; Toggle LED P1.0
+            reti
+;-------------------------------------------------------------------------------
+            COMMON  INTVEC                                  ; Interrupt Vectors
+;-------------------------------------------------------------------------------
+            ORG     ADC_VECTOR                              ; ADC10 Vector
+            DW      ADC_ISR
+            ORG     TIMER0_A0_VECTOR                        ; Timer A0 Vector
+            DW      TA0_ISR
+            ORG     RESET_VECTOR                            ; POR, ext. Reset
+            DW      RESET
+            END

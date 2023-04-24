@@ -3,7 +3,9 @@
 # This script prepares the configuration files for gerbmerge to run on a set of Eagle board
 # files.
 
-PATH=$PATH:/home/ckemere/Code/eagle-9.6.2/
+# PATH=$PATH:/home/ckemere/Code/eagle-9.6.2/
+
+PATH=$PATH:/Applications/EAGLE-9.6.2/eagle.app/Contents/MacOS/
 
 counter=1;
 SubmissionCounter=0;
@@ -27,7 +29,7 @@ MergeOut = panelized
 #
 # NOTE: Layer names are ALL LOWERCASE, even if you define them with uppercase
 # letters below.
-CutLineLayers = *topsilkscreen,*bottomsilkscreen
+CutLineLayers = *topsilkscreen,*bottomsilkscreen,*toplayer
 # Optional additional Gerber layer on which to draw a rectangle defining the
 # extents of the entire panelized job. This will create a Gerber file (with
 # name specified by this option) that simply contains a rectangle defining the
@@ -41,10 +43,10 @@ PanelWidth = 10
 PanelHeight = 10
 # Set the amount of extra space to leave around the edges of the panel to
 # simplify tooling and handling. These margins are specified in inches
-LeftMargin   = 0.1
-RightMargin  = 0.1
-TopMargin    = 0.1
-BottomMargin = 0.1
+LeftMargin   = 0.25
+RightMargin  = 0.25
+TopMargin    = 0.25
+BottomMargin = 0.25
 # Set the inter-job spacing (inches) in both the X-dimension (width) and
 # Y-dimension (height). 
 XSpacing = 0.125
@@ -77,7 +79,7 @@ do
   echo "[$student]" >> layout_gen.cfg;
 
   # The CAM-Gerber-Panelizer cam file does all the layers.
-  eagle -X -dCAMJOB -j/home/ckemere/Code/elec327/PCBs/CAM-Gerber-Panelizer.cam -o. "$prefix.brd"
+  eagle -X -dCAMJOB -j/Users/ckemere/Code/Circuits/elec327/PCBs/AdvancedCircuitsBarebones.cam -o. "$prefix.brd"
   # eagle -X -dCAMJOB -j/home/ckemere/Code/elec327/PCBs/AdvancedCircuitsBarebones.cam -o. "$prefix.brd"
 
   # Also zip each student in case that we want to run GerberTools Panelizer later.
