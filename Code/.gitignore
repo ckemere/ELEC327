@@ -1,0 +1,10 @@
+
+.DS_Store
+
+# C compiling
+*.d_raw
+*.o
+*.map
+*.out
+*_linkInfo.xml
+
