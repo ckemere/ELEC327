@@ -31,46 +31,10 @@
  */
 
 #include <ti/devices/msp/msp.h>
+#include <elec327.h>
 
 #define POWER_STARTUP_DELAY                                                (16)
 #define CPUCLK_FREQ                                                     32000000
-
-__STATIC_INLINE void updateReg(
-    volatile uint32_t *reg, uint32_t val, uint32_t mask)
-{
-    uint32_t tmp;
-
-    tmp  = *reg;
-    tmp  = tmp & ~mask;
-    *reg = tmp | (val & mask);
-}
-
-void delay_cycles(uint32_t cycles)
-{
-    /* this is a scratch register for the compiler to use */
-    uint32_t scratch;
-
-    /* There will be a 2 cycle delay here to fetch & decode instructions
-     * if branch and linking to this function */
-
-    /* Subtract 2 net cycles for constant offset: +2 cycles for entry jump,
-     * +2 cycles for exit, -1 cycle for a shorter loop cycle on the last loop,
-     * -1 for this instruction */
-
-    __asm volatile(
-#ifdef __GNUC__
-        ".syntax unified\n\t"
-#endif
-        "SUBS %0, %[numCycles], #2; \n"
-        "%=: \n\t"
-        "SUBS %0, %0, #4; \n\t"
-        "NOP; \n\t"
-        "BHS  %=b;" /* branches back to the label defined above if number > 0 */
-        /* Return: 2 cycles */
-        : "=&r"(scratch)
-        : [ numCycles ] "r"(cycles));
-}
-
 
 /* This results in approximately 0.5s of delay assuming 32MHz CPU_CLK */
 #define DELAY (16000000)
@@ -120,7 +84,7 @@ int main(void)
     SYSCTL->SOCLOCK.BORTHRESHOLD = (uint32_t) ((uint32_t)0x00000000U); // Brownout generates a powercycle. Could also be configured 1, 2, or 3
 
     // DL_SYSCTL_setSYSOSCFreq(DL_SYSCTL_SYSOSC_FREQ_BASE);
-    updateReg(&SYSCTL->SOCLOCK.SYSOSCCFG, (uint32_t) (0x00000000U),
+    update_reg(&SYSCTL->SOCLOCK.SYSOSCCFG, (uint32_t) (0x00000000U),
         SYSCTL_SYSOSCCFG_FREQ_MASK);
 
     /* Set default configuration */

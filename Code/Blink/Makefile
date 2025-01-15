@@ -8,6 +8,7 @@
 # Directories which will be system specific
 TI_ROOT := /Applications/ti/ccs1220/ccs
 SDK_ROOT := /Users/ckemere/ti/mspm0_sdk_2_03_00_07/source
+COURSE_FILES := /Users/ckemere/Code/Circuits/elec327/Code/Common
 
 
 ################################################################################
@@ -23,8 +24,8 @@ CC := $(TI_ROOT)/tools/compiler/ti-cgt-armllvm_3.2.1.LTS/bin/tiarmclang
 # Details specific to the MSPM03507.
 DEVICE_FLAG := -D__MSPM0G3507__ 
 # These files were copied from CCS compiles. I assume they are built by "sysconfig_cli.sh"
-DEVICE_CONFIG_FILE := ../MSPM0G3507.ccxml
-LINKER_MEMORY_TABLE__FLAG := -Wl,-l"../device_linker.cmd" 
+DEVICE_CONFIG_FILE := $(COURSE_FILES)/MSPM0G3507.ccxml
+LINKER_MEMORY_TABLE__FLAG := -Wl,-l"$(COURSE_FILES)/device_linker.cmd" 
 
 
 ################################################################################
@@ -32,10 +33,11 @@ LINKER_MEMORY_TABLE__FLAG := -Wl,-l"../device_linker.cmd"
 
 # LOCAL_OBJS should be a list of object files for each C file that is part of the project
 LOCAL_OBJS := gpio_toggle_output.o
+COURSE_OBJS := elec327.o
 SYSTEM_OBJS := startup_mspm0g350x_ticlang.o
 BINARY_NAME := gpio_toggle_output_LP_MSPM0G3507_nortos_ticlang
 
-SYSTEM_INCLUDES := -I"$(SDK_ROOT)" -I"$(CMSIS_ROOT)/Include"
+SYSTEM_INCLUDES := -I"$(COURSE_FILES)" -I"$(SDK_ROOT)" -I"$(CMSIS_ROOT)/Include"
 
 RM := rm -rf
 RMDIR := rm -rf
@@ -54,6 +56,15 @@ LIBS := -Wl,-llibc.a
 	@echo 'Finished building: "$<"'
 	@echo ' '
 
+elec327.o: $(COURSE_FILES)/elec327.c
+	@echo 'Building file: "$<"'
+	@echo 'Invoking: Arm Compiler'
+	$(CC) -c	-march=thumbv6m -mcpu=cortex-m0plus -mfloat-abi=soft -mlittle-endian -mthumb -O2 \
+	-I.	$(SYSTEM_INCLUDES) -gdwarf-3 -MMD -MP \
+	-MF"$(basename $(<F)).d_raw" -MT"$(@)"  $(DEVICE_FLAG) -o"$@" "$<"
+	@echo 'Finished building: "$<"'
+	@echo ' '
+
 startup_mspm0g350x_ticlang.o: $(SDK_ROOT)/ti/devices/msp/m0p/startup_system_files/ticlang/startup_mspm0g350x_ticlang.c
 	@echo 'Building file: "$<"'
 	@echo 'Invoking: Arm Compiler'
@@ -65,7 +76,7 @@ startup_mspm0g350x_ticlang.o: $(SDK_ROOT)/ti/devices/msp/m0p/startup_system_file
 
 
 # All Target
-all: $(LOCAL_OBJS) $(SYSTEM_OBJS)
+all: $(LOCAL_OBJS) $(COURSE_OBJS) $(SYSTEM_OBJS)
 	@$(MAKE) $(BINARY_NAME).out
 
 # Tool invocations
@@ -81,7 +92,7 @@ $(BINARY_NAME).out: $(LOCAL_OBJS) $(SYSTEM_OBJS)
 				-Wl,--diag_wrap=off -Wl,--display_error_number -Wl,--warn_sections \
 				-Wl,--xml_link_info="$(BINARY_NAME)_linkInfo.xml" \
 				-Wl,--rom_model \
-				$(LOCAL_OBJS) $(SYSTEM_OBJS)  \
+				$(LOCAL_OBJS) $(COURSE_OBJS) $(SYSTEM_OBJS)  \
 				$(LINKER_MEMORY_TABLE__FLAG) \
 				$(LIBS) \
 				-o $(BINARY_NAME).out
@@ -91,7 +102,7 @@ $(BINARY_NAME).out: $(LOCAL_OBJS) $(SYSTEM_OBJS)
 
 # Other Targets
 clean:
-	-$(RM) $(LOCAL_OBJS) $(SYSTEM_OBJS)
+	-$(RM) $(LOCAL_OBJS) $(COURSE_OBJS) $(SYSTEM_OBJS)
 	-$(RM) *.d_raw
 	-$(RM) $(BINARY_NAME)*.*
 	-@echo 'Finished clean'
