@@ -31,15 +31,9 @@
  */
 
 #include <ti/devices/msp/msp.h>
-//#include <ti/driverlib/driverlib.h>
-//#include <ti/driverlib/m0p/dl_core.h>
-//
-
 
 #define POWER_STARTUP_DELAY                                                (16)
-
 #define CPUCLK_FREQ                                                     32000000
-
 
 __STATIC_INLINE void updateReg(
     volatile uint32_t *reg, uint32_t val, uint32_t mask)
