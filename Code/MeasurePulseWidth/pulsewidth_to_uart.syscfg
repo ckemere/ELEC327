@@ -51,6 +51,8 @@ GPIO1.associatedPins[1].pin.$assign  = "PA15";
 
 SYSCTL.validateClkStatus     = true;
 SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.enableSYSOSCFCL       = true;
+SYSCTL.enableROSC            = true;
 
 TIMER1.$name              = "TIMER_0";
 TIMER1.timerClkDiv        = 8;
@@ -89,3 +91,4 @@ Board.peripheral.$suggestSolution          = "DEBUGSS";
 Board.peripheral.swclkPin.$suggestSolution = "PA20";
 Board.peripheral.swdioPin.$suggestSolution = "PA19";
 SYSCTL.peripheral.$suggestSolution         = "SYSCTL";
+SYSCTL.peripheral.roscPin.$suggestSolution = "PA2";
