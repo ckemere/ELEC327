@@ -29,22 +29,31 @@
  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+#include <stdio.h>
+#include <sys/types.h>
+#include <stdbool.h>
+#include <ti/devices/msp/msp.h>
+#include <ti/driverlib/driverlib.h>
+#include <ti/driverlib/m0p/dl_core.h>
 
 #include "ti_msp_dl_config.h"
-#include <stdio.h>
 
-uint8_t gWelcomeMsg[] = "\r\n==== MSPM0 Console Test ====\r\n";
-uint8_t gNoPulseMsg[] = "No pulse detected in last second. Generating pulse.\r\n";
-uint8_t gTimingMsg[15];
 
-volatile bool gConsoleTxTransmitted, gConsoleTxDMATransmitted, timerExpired;
+#define false 0
+#define true 1
+
+char gWelcomeMsg[] = "\r\n==== MSPM0 Console Test ====\r\n";
+char gNoPulseMsg[] = "No pulse detected in last second. Generating pulse.\r\n";
+char gTimingMsg[60];
+
+volatile int gConsoleTxTransmitted, gConsoleTxDMATransmitted, timerExpired;
 
 
 #define TIMER_CAPTURE_DURATION (CAPTURE_0_INST_LOAD_VALUE)
-volatile bool pulseCaptureDetected;
+volatile int pulseCaptureDetected;
 
 
-void UART_Console_write(const uint8_t *data, uint16_t size)
+void UART_Console_write(const char *data, uint16_t size)
 {
     DL_DMA_setSrcAddr(DMA, DMA_CH0_CHAN_ID, (uint32_t)(data));
     DL_DMA_setDestAddr(DMA, DMA_CH0_CHAN_ID, (uint32_t)(&UART_0_INST->TXDATA));
@@ -68,18 +77,17 @@ void UART_Console_write(const uint8_t *data, uint16_t size)
 
 __attribute__((always_inline))
 void blink_led(void) {
-//    DL_GPIO_setPins(GPIO_LEDS_PORT,
-//        GPIO_LEDS_USER_TEST_PIN);
     GPIO_LEDS_PORT->DOUTSET31_0 = GPIO_LEDS_USER_TEST_PIN;
-//            delay_cycles(10000000);
+    __NOP();
     __NOP();
     __NOP();
     __NOP();
 
-//    DL_GPIO_clearPins(GPIO_LEDS_PORT,
-//        GPIO_LEDS_USER_TEST_PIN);
     GPIO_LEDS_PORT->DOUTCLR31_0 = GPIO_LEDS_USER_TEST_PIN;
 }
+
+volatile uint32_t tRise, tFall, previousTFall = 0;
+
 
 int main(void)
 {
@@ -87,15 +95,17 @@ int main(void)
     gConsoleTxTransmitted    = false;
     gConsoleTxDMATransmitted = false;
 
-    bool pulseCapturedRecently = false;
+    int pulseCapturedRecently = false;
 
     uint32_t pulseWidth = 0;
-
+    uint32_t spaceWidth = 0;
 
     SYSCFG_DL_init();
+
+    DL_TimerG_setLoadValue(CAPTURE_0_INST, (uint32_t) (0xFFFFFFFF)); // Override config (100s) to set to 32bit max
+
     NVIC_EnableIRQ(UART_0_INST_INT_IRQN);
     NVIC_EnableIRQ(TIMER_0_INST_INT_IRQN);
-
 
 
     NVIC_EnableIRQ(CAPTURE_0_INST_INT_IRQN);
@@ -122,17 +132,20 @@ int main(void)
             pulseCaptureDetected = false;
             pulseCapturedRecently = true;
 
-            pulseWidth =
-                (DL_Timer_getCaptureCompareValue(CAPTURE_0_INST, DL_TIMER_CC_1_INDEX)) -
-                (DL_Timer_getCaptureCompareValue(CAPTURE_0_INST, DL_TIMER_CC_0_INDEX));
+            // times latched in ISR
+            pulseWidth = tFall - tRise;
+            spaceWidth = tRise - previousTFall;
+
 
             GPIO_LEDS_PORT->DOUTSET31_0 = GPIO_LEDS_USER_LED_1_PIN;
             delay_cycles(100);
             GPIO_LEDS_PORT->DOUTCLR31_0 = GPIO_LEDS_USER_LED_1_PIN;
 
 //            __BKPT(0);
-            sprintf(gTimingMsg, "=%10u\r\n", pulseWidth);
-            UART_Console_write(&gTimingMsg[0], sizeof(gTimingMsg));
+            sprintf(gTimingMsg, "=%10u,%10u\r\n", spaceWidth, pulseWidth);
+            UART_Console_write(&gTimingMsg[0], 25);
+
+
         }
         else {
             __WFI(); // __WFE();?
@@ -171,6 +184,9 @@ void CAPTURE_0_INST_IRQHandler(void)
 {
     switch (DL_TimerG_getPendingInterrupt(CAPTURE_0_INST)) {
         case DL_TIMER_IIDX_CC1_UP:
+            previousTFall = tFall;
+            tRise = (TIMG12->COUNTERREGS.CC_01[0]);
+            tFall = (TIMG12->COUNTERREGS.CC_01[1]);
             pulseCaptureDetected = true;
             break;
         default:
