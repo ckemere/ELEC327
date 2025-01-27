@@ -22,6 +22,24 @@ const UART1    = UART.addInstance();
 /**
  * Write custom configuration values to the imported modules.
  */
+const mux4       = system.clockTree["EXHFMUX"];
+mux4.inputSelect = "EXHFMUX_XTAL";
+
+const mux8       = system.clockTree["HSCLKMUX"];
+mux8.inputSelect = "HSCLKMUX_HFCLK";
+
+const mux10       = system.clockTree["MFPCLKMUX"];
+mux10.inputSelect = "MFPCLKMUX_HFCLK";
+
+const mux12       = system.clockTree["SYSPLLMUX"];
+mux12.inputSelect = "zSYSPLLMUX_HFCLK";
+
+const pinFunction4                        = system.clockTree["HFXT"];
+pinFunction4.enable                       = true;
+pinFunction4.inputFreq                    = 40;
+pinFunction4.peripheral.hfxInPin.$assign  = "PA5";
+pinFunction4.peripheral.hfxOutPin.$assign = "PA6";
+
 CAPTURE1.$name                       = "CAPTURE_0";
 CAPTURE1.captMode                    = "PULSE_WIDTH_UP";
 CAPTURE1.captEdgeDetection           = "FALLING";
@@ -51,8 +69,12 @@ GPIO1.associatedPins[1].pin.$assign       = "PB3";
 
 SYSCTL.validateClkStatus     = true;
 SYSCTL.forceDefaultClkConfig = true;
-SYSCTL.enableSYSOSCFCL       = true;
-SYSCTL.enableROSC            = true;
+SYSCTL.MCLKSource            = "HSCLK";
+SYSCTL.HSCLKSource           = "HFCLK";
+SYSCTL.useHFCLK_Manual       = true;
+SYSCTL.HFCLK_Freq            = 40000000;
+SYSCTL.HFCLKSource           = "HFXT";
+SYSCTL.clockTreeEn           = true;
 
 TIMER1.$name              = "TIMER_0";
 TIMER1.timerClkDiv        = 8;
@@ -69,7 +91,7 @@ UART1.enabledInterrupts                 = ["DMA_DONE_TX","EOT_DONE"];
 UART1.enableFIFO                        = true;
 UART1.txFifoThreshold                   = "DL_UART_TX_FIFO_LEVEL_ONE_ENTRY";
 UART1.enabledDMATXTriggers              = "DL_UART_DMA_INTERRUPT_TX";
-UART1.targetBaudRate                    = 921600;
+UART1.targetBaudRate                    = 1000000;
 UART1.peripheral.$assign                = "UART0";
 UART1.peripheral.rxPin.$assign          = "PA11";
 UART1.peripheral.txPin.$assign          = "PA10";
@@ -86,9 +108,8 @@ UART1.DMA_CHANNEL_TX.peripheral.$assign = "DMA_CH0";
  * version of the tool will not impact the pinmux you originally saw.  These lines can be completely deleted in order to
  * re-solve from scratch.
  */
+pinFunction4.peripheral.$suggestSolution     = "SYSCTL";
 Board.peripheral.$suggestSolution            = "DEBUGSS";
 Board.peripheral.swclkPin.$suggestSolution   = "PA20";
 Board.peripheral.swdioPin.$suggestSolution   = "PA19";
 GPIO1.associatedPins[0].pin.$suggestSolution = "PB26";
-SYSCTL.peripheral.$suggestSolution           = "SYSCTL";
-SYSCTL.peripheral.roscPin.$suggestSolution   = "PA2";

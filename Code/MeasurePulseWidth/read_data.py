@@ -1,7 +1,7 @@
 import serial
 import re
 
-with serial.Serial('/dev/tty.usbmodemMG3500011', 921600) as ser: # Open the serial port
+with serial.Serial('/dev/tty.usbmodemMG3500011', 1000000) as ser: # Open the serial port
   with open('pulselist.txt', 'w') as datafile:
     while (True):
       # Read data from the port

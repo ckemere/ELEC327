@@ -31,7 +31,6 @@
  */
 #include <stdio.h>
 #include <sys/types.h>
-#include <stdbool.h>
 #include <ti/devices/msp/msp.h>
 #include <ti/driverlib/driverlib.h>
 #include <ti/driverlib/m0p/dl_core.h>
@@ -43,8 +42,18 @@
 #define true 1
 
 char gWelcomeMsg[] = "\r\n==== MSPM0 Console Test ====\r\n";
-char gNoPulseMsg[] = "No pulse detected in last second. Generating pulse.\r\n";
-char gTimingMsg[60];
+char gNoPulseMsg[] = "No pulse detected in last second.\r\n";
+char gTimingMsg[25];
+
+typedef struct {
+    uint32_t spaceWidth;
+    uint32_t pulseWidth;
+} PulseData;
+
+PulseData dataBuffer[1000];
+int maxBufferedData = 100;
+int bufferIndex = 0;
+bool bufferFull = false;
 
 volatile int gConsoleTxTransmitted, gConsoleTxDMATransmitted, timerExpired;
 
@@ -91,14 +100,11 @@ volatile uint32_t tRise, tFall, previousTFall = 0;
 
 int main(void)
 {
+    bool bufferTransmitInProgress = false;
+    int bufferTransmitIndex = 0;
     timerExpired           = false;
     gConsoleTxTransmitted    = false;
     gConsoleTxDMATransmitted = false;
-
-    int pulseCapturedRecently = false;
-
-    uint32_t pulseWidth = 0;
-    uint32_t spaceWidth = 0;
 
     SYSCFG_DL_init();
 
@@ -117,35 +123,32 @@ int main(void)
     UART_Console_write(&gWelcomeMsg[0], sizeof(gWelcomeMsg));
 
     while (1) {
-        if (timerExpired == true) {
+        if (true == bufferTransmitInProgress) {
+            sprintf(gTimingMsg, "=%10u,%10u\r\n",
+                    dataBuffer[bufferTransmitIndex].spaceWidth,
+                    dataBuffer[bufferTransmitIndex].pulseWidth);
+            UART_Console_write(&gTimingMsg[0], 25); // This function is blocking!!!
+            bufferTransmitIndex = bufferTransmitIndex+1;
+
+            if (bufferTransmitIndex == maxBufferedData) {
+              // Now we can reset the buffer and start buffering again!
+              bufferTransmitInProgress = false;
+              bufferIndex = 0;
+              bufferFull = false; // This is going to start the interrupt triggering again!
+            }
+        }
+        else if (true == timerExpired) {
             timerExpired  = false;
-            if (false == pulseCapturedRecently) {
+            if (false == pulseCaptureDetected) {
                 UART_Console_write(&gNoPulseMsg[0], sizeof(gNoPulseMsg));
-                blink_led();
             }
             else {
-                pulseCapturedRecently = false;
+                pulseCaptureDetected = false;
             }
-            blink_led();
         }
-        else if (true == pulseCaptureDetected) {
-            pulseCaptureDetected = false;
-            pulseCapturedRecently = true;
-
-            // times latched in ISR
-            pulseWidth = tFall - tRise;
-            spaceWidth = tRise - previousTFall;
-
-
-            GPIO_LEDS_PORT->DOUTSET31_0 = GPIO_LEDS_USER_LED_1_PIN;
-            delay_cycles(100);
-            GPIO_LEDS_PORT->DOUTCLR31_0 = GPIO_LEDS_USER_LED_1_PIN;
-
-//            __BKPT(0);
-            sprintf(gTimingMsg, "=%10u,%10u\r\n", spaceWidth, pulseWidth);
-            UART_Console_write(&gTimingMsg[0], 25);
-
-
+        else if (true == bufferFull) {
+            bufferTransmitIndex = 0;
+            bufferTransmitInProgress = true;
         }
         else {
             __WFI(); // __WFE();?
@@ -187,6 +190,16 @@ void CAPTURE_0_INST_IRQHandler(void)
             previousTFall = tFall;
             tRise = (TIMG12->COUNTERREGS.CC_01[0]);
             tFall = (TIMG12->COUNTERREGS.CC_01[1]);
+            if (false == bufferFull) {
+                dataBuffer[bufferIndex].pulseWidth = tFall - tRise;
+                dataBuffer[bufferIndex].spaceWidth = tRise - previousTFall;
+                bufferIndex += 1;
+                if (bufferIndex == maxBufferedData) {
+                    bufferFull = true;
+                }
+                GPIO_LEDS_PORT->DOUTSET31_0 = GPIO_LEDS_USER_LED_1_PIN;
+                GPIO_LEDS_PORT->DOUTCLR31_0 = GPIO_LEDS_USER_LED_1_PIN;
+            }
             pulseCaptureDetected = true;
             break;
         default:

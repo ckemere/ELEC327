@@ -120,23 +120,6 @@
 							<outputType id="org.eclipse.cdt.managedbuilder.ui.rcbs.outputtype.100760177" name="Resource Custom Build Step Output Type"/>
 						</tool>
 					</fileInfo>
-					<folderInfo id="com.ti.ccstudio.buildDefinitions.TMS470.Debug.363162632.63941601" name="/" resourcePath="Debug">
-						<toolChain id="com.ti.ccstudio.buildDefinitions.TMS470_TICLANG_3.2.exe.DebugToolchain.1158043211" name="TI Build Tools" superClass="com.ti.ccstudio.buildDefinitions.TMS470_TICLANG_3.2.exe.DebugToolchain" unusedChildren="">
-							<option id="com.ti.ccstudio.buildDefinitions.core.OPT_TAGS.1768596043.1498643295" superClass="com.ti.ccstudio.buildDefinitions.core.OPT_TAGS.1768596043"/>
-							<option id="com.ti.ccstudio.buildDefinitions.core.OPT_CODEGEN_VERSION.2125252428.1744061513" name="Compiler version" superClass="com.ti.ccstudio.buildDefinitions.core.OPT_CODEGEN_VERSION.2125252428"/>
-							<targetPlatform id="com.ti.ccstudio.buildDefinitions.TMS470_TICLANG_3.2.exe.targetPlatformDebug" name="Platform" superClass="com.ti.ccstudio.buildDefinitions.TMS470_TICLANG_3.2.exe.targetPlatformDebug"/>
-							<tool id="com.ti.ccstudio.buildDefinitions.TMS470_TICLANG_3.2.exe.compilerDebug.472867620" name="Arm Compiler" superClass="com.ti.ccstudio.buildDefinitions.TMS470_TICLANG_3.2.exe.compilerDebug.1287808606">
-								<inputType id="com.ti.ccstudio.buildDefinitions.TMS470_TICLANG_3.2.compiler.inputType__C_SRCS.550550235" name="C Sources" superClass="com.ti.ccstudio.buildDefinitions.TMS470_TICLANG_3.2.compiler.inputType__C_SRCS"/>
-								<inputType id="com.ti.ccstudio.buildDefinitions.TMS470_TICLANG_3.2.compiler.inputType__CPP_SRCS.2033276505" name="C++ Sources" superClass="com.ti.ccstudio.buildDefinitions.TMS470_TICLANG_3.2.compiler.inputType__CPP_SRCS"/>
-								<inputType id="com.ti.ccstudio.buildDefinitions.TMS470_TICLANG_3.2.compiler.inputType__ASM_SRCS.1702931675" name="Assembly Sources" superClass="com.ti.ccstudio.buildDefinitions.TMS470_TICLANG_3.2.compiler.inputType__ASM_SRCS"/>
-								<inputType id="com.ti.ccstudio.buildDefinitions.TMS470_TICLANG_3.2.compiler.inputType__ASM2_SRCS.772886956" name="Assembly Sources" superClass="com.ti.ccstudio.buildDefinitions.TMS470_TICLANG_3.2.compiler.inputType__ASM2_SRCS"/>
-							</tool>
-							<tool id="com.ti.ccstudio.buildDefinitions.TMS470_TICLANG_3.2.exe.linkerDebug.1428985037" name="Arm Linker" superClass="com.ti.ccstudio.buildDefinitions.TMS470_TICLANG_3.2.exe.linkerDebug.1298474266"/>
-							<tool id="com.ti.ccstudio.buildDefinitions.TMS470_TICLANG_3.2.hex.373790989" name="Arm Hex Utility" superClass="com.ti.ccstudio.buildDefinitions.TMS470_TICLANG_3.2.hex.1044644923"/>
-							<tool id="com.ti.ccstudio.buildDefinitions.TMS470_TICLANG_3.2.objcopy.390593061" name="Arm Objcopy Utility" superClass="com.ti.ccstudio.buildDefinitions.TMS470_TICLANG_3.2.objcopy.346414593"/>
-							<tool id="com.ti.ccstudio.buildDefinitions.sysConfig.232270035" name="SysConfig" superClass="com.ti.ccstudio.buildDefinitions.sysConfig.2014728964"/>
-						</toolChain>
-					</folderInfo>
 				</configuration>
 			</storageModule>
 			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
