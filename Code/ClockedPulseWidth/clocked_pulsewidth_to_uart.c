@@ -41,6 +41,8 @@
 
 volatile uint32_t externalClk = 0;
 volatile uint32_t ioValue = 0;
+volatile uint32_t tEdge = 0;
+volatile uint32_t whichEdgeDetected = 0;
 
 #define false 0
 #define true 1
@@ -48,8 +50,10 @@ volatile uint32_t ioValue = 0;
 char gWelcomeMsg[] = "\r\n==== MSPM0 Console Test ====\r\n";
 char gNoPulseMsg[] = "No pulse detected in last second. Generating pulse.\r\n";
 char gTimingMsg[60];
+char gCharDetectedMsg[13] = "Received  \r\n";
+char gRxData;
 
-volatile int gConsoleTxTransmitted, gConsoleTxDMATransmitted, timerExpired;
+volatile int gConsoleTxTransmitted, gConsoleTxDMATransmitted, timerExpired, uartRxDetected=0;
 
 
 #define TIMER_CAPTURE_DURATION (CAPTURE_0_INST_LOAD_VALUE)
@@ -89,8 +93,6 @@ void blink_led(void) {
     GPIO_LEDS_PORT->DOUTCLR31_0 = GPIO_LEDS_USER_TEST_PIN;
 }
 
-volatile uint32_t tRise, tFall, previousTFall = 0;
-
 
 int main(void)
 {
@@ -104,6 +106,12 @@ int main(void)
     uint32_t spaceWidth = 0;
 
     SYSCFG_DL_init();
+
+    // Enable the SysTick counter. Systick is a 24-bit counter.
+    SysTick->CTRL = SysTick_CTRL_CLKSOURCE_Msk; // Disable Systick for configuration
+    SysTick->LOAD = 0x00FFFFFF;                 // Set the value that the Systick should count down to to the maximum for 24 bits
+    SysTick->VAL  = 0;                          // Set the current value of the counter to zero. When we execute the next line, it will loop around back to LOAD
+    SysTick->CTRL |= (SysTick_CTRL_CLKSOURCE_Msk | SysTick_CTRL_ENABLE_Msk); // Re-enable systick
 
 
     NVIC_EnableIRQ(UART_0_INST_INT_IRQN);
@@ -127,22 +135,30 @@ int main(void)
             }
             blink_led();
         }
+        else if (uartRxDetected) {
+            uartRxDetected = 0;
+            sprintf(gCharDetectedMsg, "Received %c\r\n", gRxData);
+            UART_Console_write(&gCharDetectedMsg[0], 13);
+            GPIO_CLK_GRP_PORT->DOUTSET31_0 = GPIO_CLK_GRP_GPIO_NRST_OUT_PIN;
+            GPIO_CLK_GRP_PORT->DOESET31_0 = GPIO_CLK_GRP_GPIO_NRST_OUT_PIN;
+            GPIO_CLK_GRP_PORT->DOUTCLR31_0 = GPIO_CLK_GRP_GPIO_NRST_OUT_PIN;
+            GPIO_LEDS_PORT->DOUTSET31_0 = GPIO_LEDS_USER_LED_1_PIN;
+            delay_cycles(1000);
+            GPIO_LEDS_PORT->DOUTCLR31_0 = GPIO_LEDS_USER_LED_1_PIN;
+            GPIO_CLK_GRP_PORT->DOUTSET31_0 = GPIO_CLK_GRP_GPIO_NRST_OUT_PIN;
+            GPIO_CLK_GRP_PORT->DOESET31_0 = GPIO_CLK_GRP_GPIO_NRST_OUT_PIN;
+        }
         else if (true == pulseCaptureDetected) {
             pulseCaptureDetected = false;
             pulseCapturedRecently = true;
-
-            // times latched in ISR
-            pulseWidth = tFall - tRise;
-            spaceWidth = tRise - previousTFall;
-
 
             GPIO_LEDS_PORT->DOUTSET31_0 = GPIO_LEDS_USER_LED_1_PIN;
             delay_cycles(100);
             GPIO_LEDS_PORT->DOUTCLR31_0 = GPIO_LEDS_USER_LED_1_PIN;
 
 //            __BKPT(0);
-            sprintf(gTimingMsg, "=%10u,%10u\r\n", spaceWidth, pulseWidth);
-            UART_Console_write(&gTimingMsg[0], 25);
+            sprintf(gTimingMsg, ">%1u,%10u\r\n", whichEdgeDetected, tEdge);
+            UART_Console_write(&gTimingMsg[0], 16);
         }
         else {
             __WFI(); // __WFE();?
@@ -159,6 +175,10 @@ void UART_0_INST_IRQHandler(void)
             break;
         case DL_UART_MAIN_IIDX_DMA_DONE_TX:
             gConsoleTxDMATransmitted = true;
+            break;
+        case DL_UART_MAIN_IIDX_RX:
+            gRxData = DL_UART_Main_receiveData(UART_0_INST);
+            uartRxDetected = 1;
             break;
         default:
             break;
@@ -186,8 +206,6 @@ void TIMER_0_INST_IRQHandler(void)
 
 void GROUP1_IRQHandler(void)
 {
-//    uint32_t gpioA = DL_GPIO_getEnabledInterruptStatus(GPIOA,
-//        GPIO_SWITCHES_USER_SWITCH_1_PIN | GPIO_SWITCHES_USER_SWITCH_3_PIN);
 
     externalClk++;
 
@@ -195,20 +213,22 @@ void GROUP1_IRQHandler(void)
 
     if (newIOValue == ioValue) { // unchanged. do nothing
 //        SCB->SCR |= SCB_SCR_SLEEPONEXIT_Msk;
-
     }
     else if (ioValue) { // old value was true (1-ish), now we're false, so falling edge
+        whichEdgeDetected = 0;
+        tEdge = externalClk;
         ioValue = newIOValue;
-        previousTFall = tFall;
-        tFall = externalClk;
         pulseCaptureDetected = true;
         SCB->SCR &= ~(SCB_SCR_SLEEPONEXIT_Msk); // disable sleep on exit
         // wake up from sleep
     }
     else {
+        whichEdgeDetected = 1;
+        tEdge = externalClk;
         ioValue = newIOValue;
-        tRise = externalClk;
-//        SCB->SCR |= SCB_SCR_SLEEPONEXIT_Msk;
+        pulseCaptureDetected = true;
+        SCB->SCR &= ~(SCB_SCR_SLEEPONEXIT_Msk); // disable sleep on exit
+        // wake up from sleep
     }
 
 }

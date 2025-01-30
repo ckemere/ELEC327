@@ -34,7 +34,7 @@ const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
 
 GPIO2.port                                  = "PORTB";
 GPIO2.$name                                 = "GPIO_CLK_GRP";
-GPIO2.associatedPins.create(2);
+GPIO2.associatedPins.create(3);
 GPIO2.associatedPins[0].direction           = "INPUT";
 GPIO2.associatedPins[0].ioStructure         = "SD";
 GPIO2.associatedPins[0].interruptEn         = true;
@@ -45,6 +45,9 @@ GPIO2.associatedPins[0].$name               = "GPIO_CLK_IN";
 GPIO2.associatedPins[1].$name               = "GPIO_PULSES_IN";
 GPIO2.associatedPins[1].direction           = "INPUT";
 GPIO2.associatedPins[1].pin.$assign         = "PB16";
+GPIO2.associatedPins[2].$name               = "GPIO_NRST_OUT";
+GPIO2.associatedPins[2].direction           = "INPUT";
+GPIO2.associatedPins[2].pin.$assign         = "PB6";
 
 SYSCTL.validateClkStatus     = true;
 SYSCTL.forceDefaultClkConfig = true;
@@ -62,11 +65,11 @@ TIMER1.peripheral.$assign = "TIMG0";
 
 UART1.$name                             = "UART_0";
 UART1.rxFifoThreshold                   = "DL_UART_RX_FIFO_LEVEL_ONE_ENTRY";
-UART1.enabledInterrupts                 = ["DMA_DONE_TX","EOT_DONE"];
 UART1.enableFIFO                        = true;
 UART1.txFifoThreshold                   = "DL_UART_TX_FIFO_LEVEL_ONE_ENTRY";
 UART1.enabledDMATXTriggers              = "DL_UART_DMA_INTERRUPT_TX";
 UART1.targetBaudRate                    = 921600;
+UART1.enabledInterrupts                 = ["DMA_DONE_TX","EOT_DONE","RX"];
 UART1.peripheral.$assign                = "UART0";
 UART1.peripheral.rxPin.$assign          = "PA11";
 UART1.peripheral.txPin.$assign          = "PA10";
