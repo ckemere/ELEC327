@@ -12,8 +12,7 @@
 | Arm Cortex M0+ Technical Reference Manual | [DDI0484C_cortex_m0p_r0p1_trm.pdf](DDI0484C_cortex_m0p_r0p1_trm) | [link](https://developer.arm.com/documentation/ddi0484/latest/) |
 | Arm Cortex M0+ Devices User Guide | [DUI0662B_cortex_m0p_r0p1_dgug.pdf](DUI0662B_cortex_m0p_r0p1_dgug.pdf) | [link](https://developer.arm.com/documentation/dui0662/b?lang=en) |
 | Arm Cortex M0+ Instruction Set |  | [link](https://developer.arm.com/documentation/dui0662/b/The-Cortex-M0--Instruction-Set/Instruction-set-summary?lang=en)
-| Arm Cortex M0+ Instruction Set Summary |  |
-[link](https://developer.arm.com/documentation/ddi0484/c/Programmers-Model/Instruction-set-summary?lang=en) |
+| Arm Cortex M0+ Instruction Set Summary |  | [link](https://developer.arm.com/documentation/ddi0484/c/Programmers-Model/Instruction-set-summary?lang=en) |
 
 
 ## App Notes
