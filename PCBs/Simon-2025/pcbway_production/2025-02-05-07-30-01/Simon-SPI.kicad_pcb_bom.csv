@@ -1,0 +1,16 @@
+﻿Designator,Quantity,Value,Footprint,Package,MPN,DNP,Mount_Type,Description,Height,Mouser Part Number,Mouser Price/Stock,Manufacturer_Name
+BT1,1,Battery_Cell,BatteryHolder_Keystone_2468_2xAAA,,,,tht,Single-cell battery,,,,
+BZ1,1,Buzzer,Buzzer_CUI_CPT-9019S-SMT,,,,smt,"Buzzer, polarized",,,,
+C1,1,10uF,C_1206_3216Metric_Pad1.33x1.80mm_HandSolder,,,,smt,Unpolarized capacitor,,,,
+C2,1,0.1uF,C_0603_1608Metric_Pad1.08x0.95mm_HandSolder,,,,smt,Unpolarized capacitor,,,,
+C3,1,10nF,C_0603_1608Metric_Pad1.08x0.95mm_HandSolder,,,,smt,Unpolarized capacitor,,,,
+C4,1,0.47 uF,C_0603_1608Metric_Pad1.08x0.95mm_HandSolder,,,,smt,Unpolarized capacitor,,,,
+IC1,1,MSPM0G3507SDGS28R,SOP50P490X110-28N,,MSPM0G3107SDGS28R,,smt,"ARM Microcontrollers - MCU 80MHz Arm M0+ MCU, 128KB Flash, 32KB SRAM, 2 12bit 4Msps ADC, DAC, 3 COMP, 3 op-amp, CAN-FD, MATHACL",1.1,595-MSPM0G3107SDG28R,https://www.mouser.co.uk/ProductDetail/Texas-Instruments/MSPM0G3107SDGS28R?qs=IKkN%2F947nfBrWw9Syp8p1g%3D%3D,Texas Instruments
+J1,1,Conn_01x09,PinHeader_1x09_P2.54mm_Horizontal,,,,tht,"Generic connector, single row, 01x09, script generated (kicad-library-utils/schlib/autogen/connector/)",,,,
+J2,1,Conn_01x05,PinHeader_1x05_P2.54mm_Horizontal,,,,tht,"Generic connector, single row, 01x05, script generated (kicad-library-utils/schlib/autogen/connector/)",,,,
+"LED1, LED2, LED3, LED4",4,BL-HBGR32L-3-TRB-8,BL-HBGR32L-3-TRB-8_AMB,,,,smt,,,,,
+R5,1,47k,R_0603_1608Metric_Pad0.98x0.95mm_HandSolder,,,,smt,"Resistor, US symbol",,,,
+R6,1,100k,R_0603_1608Metric_Pad0.98x0.95mm_HandSolder,,,,smt,"Resistor, US symbol",,,,
+"SW1, SW2, SW3, SW4",4,SW_DPST,SW_SPST_PTS645,,,,smt,Double Pole Single Throw (DPST) Switch,,,,
+SW6,1,SW_SPDT,SW_DPDT_CK_JS202011JCQN,,,,smt,SWITCH SLIDE DPDT 300MA 6V,,,,
+U1,1,LIS2HH12,LGA-12_2x2mm_P0.5mm,,,,smt,"3-Axis Accelerometer, 2/4/8g range, I2C/SPI interface",,,,
