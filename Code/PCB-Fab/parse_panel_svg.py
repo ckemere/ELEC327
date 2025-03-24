@@ -1,0 +1,186 @@
+import xml.etree.ElementTree as ET
+import re
+import argparse
+import os
+
+def points_match(p1, p2, tol=1e-6):
+    return abs(p1[0] - p2[0]) < tol and abs(p1[1] - p2[1]) < tol
+
+def reverse_path(path):
+    reversed_path = path.copy()
+    reversed_path['start'], reversed_path['end'] = path['end'], path['start']
+
+    tokens = re.findall(r'[MLC]|-?\d*\.\d+(?:[eE][-+]?\d+)?', path['d'])
+    if tokens[0] != 'M':
+        return reversed_path  # Fail-safe
+
+    original_start_x, original_start_y = float(tokens[1]), float(tokens[2])
+    i = 3
+    reversed_d = ''
+    reversed_cmds = []
+
+    if i < len(tokens):
+        cmd = tokens[i]
+        i += 1
+        if cmd == 'L':
+            x_end, y_end = float(tokens[i]), float(tokens[i+1])
+            # Reverse path data string
+            reversed_d = f'M {x_end} {y_end} L {original_start_x} {original_start_y}'
+            # Reverse cmds list
+            reversed_cmds = [f'L {original_start_x} {original_start_y}']
+        elif cmd == 'C':
+            x1, y1 = float(tokens[i]), float(tokens[i+1])
+            x2, y2 = float(tokens[i+2]), float(tokens[i+3])
+            x_end, y_end = float(tokens[i+4]), float(tokens[i+5])
+            # Reverse path data string
+            reversed_d = f'M {x_end} {y_end} C {x2} {y2} {x1} {y1} {original_start_x} {original_start_y}'
+            # Reverse cmds list
+            reversed_cmds = [f'C {x2} {y2} {x1} {y1} {original_start_x} {original_start_y}']
+
+    reversed_path['d'] = reversed_d
+    reversed_path['cmds'] = reversed_cmds
+    return reversed_path
+
+
+def parse_svg_paths(svg_content):
+    tree = ET.ElementTree(ET.fromstring(svg_content))
+    root = tree.getroot()
+    ns = {'svg': root.tag.split('}')[0].strip('{')} if '}' in root.tag else {}
+
+    svg_attributes = root.attrib  # Preserve all attributes of <svg>
+    path_data = []
+
+    for path in root.findall('.//svg:path', ns) if ns else root.findall('.//path'):
+        d_attr = path.attrib.get('d', '')
+        transform = path.attrib.get('transform', '')
+
+        tokens = re.findall(r'[MLC]|-?\d*\.\d+(?:[eE][-+]?\d+)?', d_attr)
+        i = 0
+        if tokens[i] == 'M':
+            x_start = float(tokens[i+1])
+            y_start = float(tokens[i+2])
+            i += 3
+
+            end_point = None
+            cmd_tokens = []
+
+            while i < len(tokens):
+                cmd = tokens[i]
+                i += 1
+                if cmd == 'L':
+                    x_end = float(tokens[i]), float(tokens[i+1])
+                    end_point = x_end
+                    cmd_tokens.append(f'L {x_end[0]} {x_end[1]}')
+                    i += 2
+                elif cmd == 'C':
+                    x1, y1 = float(tokens[i]), float(tokens[i+1])
+                    x2, y2 = float(tokens[i+2]), float(tokens[i+3])
+                    x_end = float(tokens[i+4]), float(tokens[i+5])
+                    end_point = x_end
+                    cmd_tokens.append(f'C {x1} {y1} {x2} {y2} {x_end[0]} {x_end[1]}')
+                    i += 6
+
+            if end_point:
+                path_info = {
+                    'd': d_attr,
+                    'transform': transform,
+                    'start': (x_start, y_start),
+                    'end': end_point,
+                    'cmds': cmd_tokens
+                }
+                path_data.append(path_info)
+
+    return path_data, svg_attributes
+
+def group_closed_paths(path_list):
+    ungrouped = path_list.copy()
+    closed_groups = []
+
+    while ungrouped:
+        current_path = ungrouped.pop(0)
+        group = [current_path]
+        current_end = current_path['end']
+
+        found = True
+        while found:
+            found = False
+            for i, path in enumerate(ungrouped):
+                if points_match(path['start'], current_end):
+                    group.append(path)
+                    current_end = path['end']
+                    ungrouped.pop(i)
+                    found = True
+                    break
+                elif points_match(path['end'], current_end):
+                    reversed_p = reverse_path(path)
+                    group.append(reversed_p)
+                    current_end = reversed_p['end']
+                    ungrouped.pop(i)
+                    found = True
+                    break
+
+        closed_groups.append(group)
+
+    for g in closed_groups:
+      for d in g:
+          print(f"Start {d['start']} -> End {d['end']}, {d['cmds']}")
+          print(f"{d['d']}")
+      print('\n\n')
+
+    return closed_groups
+
+def create_combined_paths(groups):
+    combined_paths = []
+
+    for group in groups:
+        cmds = []
+        start = group[0]['start']
+        cmds.append(f'M {start[0]} {start[1]}')
+        for path in group:
+            cmds.extend(path['cmds'])
+
+        combined_d = ' '.join(cmds)
+        transform = group[0]['transform']
+        combined_paths.append({'d': combined_d, 'transform': transform})
+
+    return combined_paths
+
+def write_svg(output_file, combined_paths, svg_attributes):
+    # Build <svg> tag with preserved attributes
+    attr_str = ' '.join(f'{k}="{v}"' for k, v in svg_attributes.items())
+    svg_header = f'<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n<svg {attr_str}>\n'
+    svg_footer = '</svg>'
+
+    stroke_attrs = 'stroke-width="0.00197" stroke-linecap="round" stroke-linejoin="miter" stroke="rgb(45.098039%, 45.098039%, 87.058824%)" stroke-opacity="1" stroke-miterlimit="10" fill="none"'
+
+    with open(output_file, 'w') as f:
+        f.write(svg_header)
+        for path in combined_paths:
+            path_str = f'<path {stroke_attrs} d="{path["d"]}" transform="{path["transform"]}"/>\n'
+            f.write(path_str)
+        f.write(svg_footer)
+
+# --- Main ---
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Combine SVG paths into closed shapes.")
+    parser.add_argument('input_file', help='Path to the input SVG file')
+    parser.add_argument('-o', '--output', help='Optional output SVG file name')
+
+    args = parser.parse_args()
+    input_file = args.input_file
+
+    # Generate output file name if not provided
+    if args.output:
+        output_file = args.output
+    else:
+        base, ext = os.path.splitext(input_file)
+        output_file = f"{base}_combined{ext}"
+
+    with open(input_file, 'r') as f:
+        svg_content = f.read()
+
+    paths, svg_attrs = parse_svg_paths(svg_content)
+    closed_groups = group_closed_paths(paths)
+    combined_paths = create_combined_paths(closed_groups)
+    print(f'Writing unified paths to {output_file}.')
+    write_svg(output_file, combined_paths, svg_attrs)
