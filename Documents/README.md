@@ -8,6 +8,7 @@
 | MSPM0G3x0x, MSPM0G1x0x Microcontrollers Errata | [slaz742b.pdf](slaz742b.pdf) |  |
 | MSPM0G3507 LaunchPad User's Guide | [slau873d.pdf](slau873d.pdf) |  |
 | MSPM0G3507 LaunchPad User's Guide | [slau873d.pdf](slau873d.pdf) |  |
+| MSPM0C110x MSP003 Data Sheet (used in Lab 5/8) | [mspm0c1104.pdf](mspm0c1104.pdf) | |
 | TI Arm Clang Compiler User Guide | [TI_Arm_Clang_Compiler_Tools_User_Guide.pdf](TI_Arm_Clang_Compiler_Tools_User_Guide.pdf) |  |
 | Arm Cortex M0+ Technical Reference Manual | [DDI0484C_cortex_m0p_r0p1_trm.pdf](DDI0484C_cortex_m0p_r0p1_trm) | [link](https://developer.arm.com/documentation/ddi0484/latest/) |
 | Arm Cortex M0+ Devices User Guide | [DUI0662B_cortex_m0p_r0p1_dgug.pdf](DUI0662B_cortex_m0p_r0p1_dgug.pdf) | [link](https://developer.arm.com/documentation/dui0662/b?lang=en) |
