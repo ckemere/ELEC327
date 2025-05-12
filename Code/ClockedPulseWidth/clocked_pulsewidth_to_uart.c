@@ -138,15 +138,27 @@ int main(void)
         else if (uartRxDetected) {
             uartRxDetected = 0;
             sprintf(gCharDetectedMsg, "Received %c\r\n", gRxData);
-            UART_Console_write(&gCharDetectedMsg[0], 13);
-            GPIO_CLK_GRP_PORT->DOUTSET31_0 = GPIO_CLK_GRP_GPIO_NRST_OUT_PIN;
-            GPIO_CLK_GRP_PORT->DOESET31_0 = GPIO_CLK_GRP_GPIO_NRST_OUT_PIN;
-            GPIO_CLK_GRP_PORT->DOUTCLR31_0 = GPIO_CLK_GRP_GPIO_NRST_OUT_PIN;
-            GPIO_LEDS_PORT->DOUTSET31_0 = GPIO_LEDS_USER_LED_1_PIN;
-            delay_cycles(1000);
-            GPIO_LEDS_PORT->DOUTCLR31_0 = GPIO_LEDS_USER_LED_1_PIN;
-            GPIO_CLK_GRP_PORT->DOUTSET31_0 = GPIO_CLK_GRP_GPIO_NRST_OUT_PIN;
-            GPIO_CLK_GRP_PORT->DOESET31_0 = GPIO_CLK_GRP_GPIO_NRST_OUT_PIN;
+            if (gRxData == 'r') {
+                NVIC_DisableIRQ(GPIO_CLK_GRP_INT_IRQN);
+
+                UART_Console_write(&gCharDetectedMsg[0], 13);
+                GPIO_CLK_GRP_PORT->DOUTSET31_0 = GPIO_CLK_GRP_GPIO_NRST_OUT_PIN;
+                GPIO_CLK_GRP_PORT->DOESET31_0 = GPIO_CLK_GRP_GPIO_NRST_OUT_PIN;
+                GPIO_CLK_GRP_PORT->DOUTCLR31_0 = GPIO_CLK_GRP_GPIO_NRST_OUT_PIN;
+                GPIO_LEDS_PORT->DOUTSET31_0 = GPIO_LEDS_USER_LED_1_PIN;
+
+                delay_cycles(48000);
+
+                NVIC_ClearPendingIRQ(GPIO_CLK_GRP_INT_IRQN);
+                externalClk = 0;
+                NVIC_EnableIRQ(GPIO_CLK_GRP_INT_IRQN);
+
+                delay_cycles(48000);
+
+                GPIO_LEDS_PORT->DOUTCLR31_0 = GPIO_LEDS_USER_LED_1_PIN;
+                GPIO_CLK_GRP_PORT->DOUTSET31_0 = GPIO_CLK_GRP_GPIO_NRST_OUT_PIN;
+                GPIO_CLK_GRP_PORT->DOESET31_0 = GPIO_CLK_GRP_GPIO_NRST_OUT_PIN;
+            }
         }
         else if (true == pulseCaptureDetected) {
             pulseCaptureDetected = false;
