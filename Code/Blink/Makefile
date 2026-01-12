@@ -52,7 +52,7 @@ LIBS := -Wl,-llibc.a
 	@echo 'Invoking: Arm Compiler'
 	$(CC) -c -march=thumbv6m -mcpu=cortex-m0plus -mfloat-abi=soft -mlittle-endian -mthumb -O2 \
 			-I. $(SYSTEM_INCLUDES) -gdwarf-3 -MMD -MP \
-			-MF"$(basename $(<F)).d_raw" -MT"$(@)" $(DEVICE_FLAG) -o"$@" "$<"
+			-MT"$(@)" $(DEVICE_FLAG) -o"$@" "$<"
 	@echo 'Finished building: "$<"'
 	@echo ' '
 
@@ -61,16 +61,19 @@ elec327.o: $(COURSE_FILES)/elec327.c
 	@echo 'Invoking: Arm Compiler'
 	$(CC) -c	-march=thumbv6m -mcpu=cortex-m0plus -mfloat-abi=soft -mlittle-endian -mthumb -O2 \
 	-I.	$(SYSTEM_INCLUDES) -gdwarf-3 -MMD -MP \
-	-MF"$(basename $(<F)).d_raw" -MT"$(@)"  $(DEVICE_FLAG) -o"$@" "$<"
+	 -MT"$(@)"  $(DEVICE_FLAG) -o"$@" "$<"
 	@echo 'Finished building: "$<"'
 	@echo ' '
+
+#	-MF"$(basename $(<F)).d_raw" -MT"$(@)"  $(DEVICE_FLAG) -o"$@" "$<"
+
 
 startup_mspm0g350x_ticlang.o: $(SDK_ROOT)/ti/devices/msp/m0p/startup_system_files/ticlang/startup_mspm0g350x_ticlang.c
 	@echo 'Building file: "$<"'
 	@echo 'Invoking: Arm Compiler'
 	$(CC) -c	-march=thumbv6m -mcpu=cortex-m0plus -mfloat-abi=soft -mlittle-endian -mthumb -O2 \
 	-I.	$(SYSTEM_INCLUDES) -gdwarf-3 -MMD -MP \
-	-MF"$(basename $(<F)).d_raw" -MT"$(@)"  $(DEVICE_FLAG) -o"$@" "$<"
+	-MT"$(@)"  $(DEVICE_FLAG) -o"$@" "$<"
 	@echo 'Finished building: "$<"'
 	@echo ' '
 

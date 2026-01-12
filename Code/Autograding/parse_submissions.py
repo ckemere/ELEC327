@@ -18,24 +18,48 @@ def rename_files_to_directories(assignment_path, parsed_data_path=None, normaliz
             extension = match.group('extension')
             version = match.group('version')
             original_filename = match.group('original_filename')
-            
-            assignment_data[student_name] = {
-                'student number': student_number,
-                'special number': special_number,
-                'original filename': filename,
-                'real filename': original_filename,
-                'extension': extension,
-                'version': version
-            }
-            
+
             if parsed_data_path:
-                print('Copying {}'.format(student_name))
+                print('Copying {} {}'.format(student_name, original_filename))
                 student_dir = os.path.join(parsed_data_path, student_name)
                 os.makedirs(student_dir, exist_ok=True)
                 if normalize_filename:
                     shutil.copy(os.path.join(assignment_path, filename), os.path.join(student_dir, original_filename + '.' + extension))                    
                 else:
                     shutil.copy(os.path.join(assignment_path, filename), os.path.join(student_dir, filename))
+
+
+            # Check if student already exists in the dictionary
+            if student_name in assignment_data:
+                # If student exists, check if fields are lists and convert if needed before appending
+                if not isinstance(assignment_data[student_name]['special number'], list):
+                    assignment_data[student_name]['special number'] = [assignment_data[student_name]['special number']]
+                if not isinstance(assignment_data[student_name]['original filename'], list):
+                    assignment_data[student_name]['original filename'] = [assignment_data[student_name]['original filename']]
+                if not isinstance(assignment_data[student_name]['real filename'], list):
+                    assignment_data[student_name]['real filename'] = [assignment_data[student_name]['real filename']]
+                if not isinstance(assignment_data[student_name]['extension'], list):
+                    assignment_data[student_name]['extension'] = [assignment_data[student_name]['extension']]
+                if not isinstance(assignment_data[student_name]['version'], list):
+                    assignment_data[student_name]['version'] = [assignment_data[student_name]['version']]
+                
+                # Now append to the lists
+                assignment_data[student_name]['special number'].append(special_number)
+                assignment_data[student_name]['original filename'].append(filename)
+                assignment_data[student_name]['real filename'].append(original_filename)
+                assignment_data[student_name]['extension'].append(extension)
+                assignment_data[student_name]['version'].append(version)
+            else:
+                # If this is the first file for this student, create new entry with lists
+                assignment_data[student_name] = {
+                    'student number': student_number,
+                    'special number': special_number,
+                    'original filename': filename,
+                    'real filename': original_filename,
+                    'extension': extension,
+                    'version': version
+                }
+            
     
     return assignment_data
 
