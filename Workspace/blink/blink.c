@@ -12,8 +12,6 @@
 
 int main(void)
 {
-    SYSCTL->SOCLOCK.BORTHRESHOLD = SYSCTL_SYSSTATUS_BORCURTHRESHOLD_BORMIN; // Brownout generates a reset.
-
     /* Code to initialize GPIO PORT */
     // 1. Reset GPIO port (the one(s) for pins that you will use)
     GPIOA->GPRCM.RSTCTL = (GPIO_RSTCTL_KEY_UNLOCK_W | GPIO_RSTCTL_RESETSTKYCLR_CLR | GPIO_RSTCTL_RESETASSERT_ASSERT);
