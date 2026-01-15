@@ -24,8 +24,8 @@ int main(void)
     /* Code to initialize specific GPIO PIN */
     // PA0 is red led gpio
     IOMUX->SECCFG.PINCM[(IOMUX_PINCM1)] = (IOMUX_PINCM_PC_CONNECTED | ((uint32_t) 0x00000001));
-    GPIOA->DOESET31_0 = (0x00000001); // PA01 is our output pin for the Led
     GPIOA->DOUTSET31_0 = (0x00000000);
+    GPIOA->DOESET31_0 = (0x00000001); // PA0 is our output pin for the Led
 
     // Functional
     while (1) {
