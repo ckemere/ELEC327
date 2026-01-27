@@ -1,5 +1,6 @@
 /*
- * This template file
+ * This template file implements a simple GPIO output manipulation using
+ * a state machine in an infinite loop.
  */
 
 #include <ti/devices/msp/msp.h>
@@ -27,6 +28,9 @@ int main(void)
 }
 
 /*
+ * Copyright (c) 2026, Caleb Kemere
+ * Derived from example code which is
+ *
  * Copyright (c) 2023, Texas Instruments Incorporated
  * All rights reserved.
  *
