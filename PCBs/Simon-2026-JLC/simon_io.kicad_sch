@@ -1,7 +1,7 @@
 (kicad_sch
-	(version 20231120)
+	(version 20250114)
 	(generator "eeschema")
-	(generator_version "8.0")
+	(generator_version "9.0")
 	(uuid "d2175bad-8083-45b5-8d33-98877851452c")
 	(paper "A4")
 	(lib_symbols
@@ -86,18 +86,6 @@
 			(symbol "BL-HBGR32L-3-TRB-8_0_1"
 				(polyline
 					(pts
-						(xy 7.62 -10.16) (xy 33.02 -10.16)
-					)
-					(stroke
-						(width 0.127)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
 						(xy 7.62 5.08) (xy 7.62 -10.16)
 					)
 					(stroke
@@ -110,7 +98,7 @@
 				)
 				(polyline
 					(pts
-						(xy 33.02 -10.16) (xy 33.02 5.08)
+						(xy 7.62 -10.16) (xy 33.02 -10.16)
 					)
 					(stroke
 						(width 0.127)
@@ -123,6 +111,18 @@
 				(polyline
 					(pts
 						(xy 33.02 5.08) (xy 7.62 5.08)
+					)
+					(stroke
+						(width 0.127)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 33.02 -10.16) (xy 33.02 5.08)
 					)
 					(stroke
 						(width 0.127)
@@ -186,17 +186,17 @@
 						)
 					)
 				)
-				(pin power_in line
-					(at 40.64 -5.08 180)
+				(pin output line
+					(at 40.64 0 180)
 					(length 7.62)
-					(name "VCC"
+					(name "DOUT"
 						(effects
 							(font
 								(size 1.27 1.27)
 							)
 						)
 					)
-					(number "4"
+					(number "6"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -222,17 +222,17 @@
 						)
 					)
 				)
-				(pin output line
-					(at 40.64 0 180)
+				(pin power_in line
+					(at 40.64 -5.08 180)
 					(length 7.62)
-					(name "DOUT"
+					(name "VCC"
 						(effects
 							(font
 								(size 1.27 1.27)
 							)
 						)
 					)
-					(number "6"
+					(number "4"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -241,23 +241,26 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
-		(symbol "Switch:SW_DPST"
+		(symbol "Switch:SW_SPST"
 			(pin_names
-				(offset 0) hide)
+				(offset 0)
+				(hide yes)
+			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
 			(property "Reference" "SW"
-				(at 0 6.35 0)
+				(at 0 3.175 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
 				)
 			)
-			(property "Value" "SW_DPST"
-				(at 0 -5.08 0)
+			(property "Value" "SW_SPST"
+				(at 0 -2.54 0)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -282,7 +285,7 @@
 					(hide yes)
 				)
 			)
-			(property "Description" "Double Pole Single Throw (DPST) Switch"
+			(property "Description" "Single Pole Single Throw (SPST) switch"
 				(at 0 0 0)
 				(effects
 					(font
@@ -291,7 +294,7 @@
 					(hide yes)
 				)
 			)
-			(property "ki_keywords" "switch dual double-pole single-throw OFF-ON"
+			(property "ki_keywords" "switch lever"
 				(at 0 0 0)
 				(effects
 					(font
@@ -300,20 +303,9 @@
 					(hide yes)
 				)
 			)
-			(symbol "SW_DPST_0_0"
+			(symbol "SW_SPST_0_0"
 				(circle
-					(center -2.032 -2.54)
-					(radius 0.508)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(circle
-					(center -2.032 2.54)
+					(center -2.032 0)
 					(radius 0.508)
 					(stroke
 						(width 0)
@@ -325,67 +317,7 @@
 				)
 				(polyline
 					(pts
-						(xy -1.524 -2.286) (xy 1.27 -1.016)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.524 2.794) (xy 1.27 4.064)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 -1.27) (xy 0 -0.635)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 0) (xy 0 0.635)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 1.27) (xy 0 1.905)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 2.54) (xy 0 3.175)
+						(xy -1.524 0.254) (xy 1.524 1.778)
 					)
 					(stroke
 						(width 0)
@@ -396,18 +328,7 @@
 					)
 				)
 				(circle
-					(center 2.032 -2.54)
-					(radius 0.508)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(circle
-					(center 2.032 2.54)
+					(center 2.032 0)
 					(radius 0.508)
 					(stroke
 						(width 0)
@@ -418,22 +339,11 @@
 					)
 				)
 			)
-			(symbol "SW_DPST_1_1"
-				(rectangle
-					(start -3.175 4.445)
-					(end 3.175 -3.81)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type background)
-					)
-				)
+			(symbol "SW_SPST_1_1"
 				(pin passive line
-					(at -5.08 -2.54 0)
+					(at -5.08 0 0)
 					(length 2.54)
-					(name "1"
+					(name "A"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -449,9 +359,9 @@
 					)
 				)
 				(pin passive line
-					(at 5.08 -2.54 180)
+					(at 5.08 0 180)
 					(length 2.54)
-					(name "2"
+					(name "B"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -466,49 +376,18 @@
 						)
 					)
 				)
-				(pin passive line
-					(at -5.08 2.54 0)
-					(length 2.54)
-					(name "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 5.08 2.54 180)
-					(length 2.54)
-					(name "4"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "4"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "power:GND"
 			(power)
-			(pin_numbers hide)
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
-				(offset 0) hide)
+				(offset 0)
+				(hide yes)
+			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -599,12 +478,17 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "power:VDD"
 			(power)
-			(pin_numbers hide)
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
-				(offset 0) hide)
+				(offset 0)
+				(hide yes)
+			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -676,7 +560,7 @@
 				)
 				(polyline
 					(pts
-						(xy 0 0) (xy 0 2.54)
+						(xy 0 2.54) (xy 0.762 1.27)
 					)
 					(stroke
 						(width 0)
@@ -688,7 +572,7 @@
 				)
 				(polyline
 					(pts
-						(xy 0 2.54) (xy 0.762 1.27)
+						(xy 0 0) (xy 0 2.54)
 					)
 					(stroke
 						(width 0)
@@ -719,6 +603,7 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 	)
 	(junction
@@ -728,28 +613,10 @@
 		(uuid "02c67233-9186-40f5-924a-481a9af7c50e")
 	)
 	(junction
-		(at 109.22 52.07)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "17d8022b-9c25-4fc1-b3a0-d5e4aa822d55")
-	)
-	(junction
 		(at 261.62 35.56)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "30e6eb59-7ddf-4ede-ac28-0f7563dafcbc")
-	)
-	(junction
-		(at 109.22 123.19)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "44c7548b-1b6c-4e88-9e21-006e6db6643b")
-	)
-	(junction
-		(at 109.22 97.79)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "5810ae26-5e48-498e-a078-8ae7cc32370f")
 	)
 	(junction
 		(at 198.12 130.81)
@@ -762,12 +629,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "a00d252a-700f-4652-bc67-ff42bf00d72b")
-	)
-	(junction
-		(at 109.22 72.39)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "b2c1e771-7c8c-49e1-b191-204c49469e2f")
 	)
 	(junction
 		(at 109.22 77.47)
@@ -831,16 +692,6 @@
 	)
 	(wire
 		(pts
-			(xy 96.52 97.79) (xy 96.52 102.87)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "0eb381bd-a55d-41c0-b3e0-763d1ef9ab38")
-	)
-	(wire
-		(pts
 			(xy 205.74 113.03) (xy 205.74 125.73)
 		)
 		(stroke
@@ -858,26 +709,6 @@
 			(type default)
 		)
 		(uuid "1502a583-bb80-42f4-967b-d420cfd12b12")
-	)
-	(wire
-		(pts
-			(xy 109.22 77.47) (xy 109.22 97.79)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1d7eeeb5-c5d5-4c13-8084-a475b7c5c28e")
-	)
-	(wire
-		(pts
-			(xy 106.68 97.79) (xy 109.22 97.79)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "279b6fde-33a4-4a0b-9ec0-54308ccd5711")
 	)
 	(wire
 		(pts
@@ -921,23 +752,13 @@
 	)
 	(wire
 		(pts
-			(xy 109.22 97.79) (xy 109.22 102.87)
+			(xy 109.22 77.47) (xy 109.22 102.87)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "34b320b7-f05d-4d74-b94f-4ecc4876c5a7")
-	)
-	(wire
-		(pts
-			(xy 96.52 72.39) (xy 96.52 77.47)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "34ed30a0-9145-4133-bc72-f42b47ea016e")
 	)
 	(wire
 		(pts
@@ -1068,26 +889,6 @@
 			(type default)
 		)
 		(uuid "5c8b3023-fdb9-4edd-8e58-8a1eec15be49")
-	)
-	(wire
-		(pts
-			(xy 109.22 46.99) (xy 109.22 52.07)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5f245336-aee0-4c3c-9aac-5699e01657fd")
-	)
-	(wire
-		(pts
-			(xy 106.68 72.39) (xy 109.22 72.39)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "609844fe-e1a8-4c05-b66a-0d293259d303")
 	)
 	(wire
 		(pts
@@ -1231,16 +1032,6 @@
 	)
 	(wire
 		(pts
-			(xy 106.68 46.99) (xy 109.22 46.99)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a82ae584-6db3-42bd-8781-1c8e591e503d")
-	)
-	(wire
-		(pts
 			(xy 203.2 96.52) (xy 203.2 78.74)
 		)
 		(stroke
@@ -1301,23 +1092,13 @@
 	)
 	(wire
 		(pts
-			(xy 109.22 102.87) (xy 109.22 123.19)
+			(xy 109.22 102.87) (xy 109.22 128.27)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "bb9a1426-bb5b-4644-ac2d-a2cd4ef43b58")
-	)
-	(wire
-		(pts
-			(xy 109.22 123.19) (xy 109.22 128.27)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "bda83216-53d0-43e0-8ace-5ecd07ae2233")
 	)
 	(wire
 		(pts
@@ -1331,7 +1112,7 @@
 	)
 	(wire
 		(pts
-			(xy 109.22 52.07) (xy 109.22 72.39)
+			(xy 109.22 52.07) (xy 109.22 77.47)
 		)
 		(stroke
 			(width 0)
@@ -1348,16 +1129,6 @@
 			(type default)
 		)
 		(uuid "ca875cb9-6ae8-417e-a517-2578f762382a")
-	)
-	(wire
-		(pts
-			(xy 109.22 72.39) (xy 109.22 77.47)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "caa28998-d8ad-43c1-ab2d-325daeff3d26")
 	)
 	(wire
 		(pts
@@ -1401,16 +1172,6 @@
 	)
 	(wire
 		(pts
-			(xy 96.52 123.19) (xy 96.52 128.27)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "db8194e8-2e29-40de-80e3-b46028ebfcdf")
-	)
-	(wire
-		(pts
 			(xy 106.68 77.47) (xy 109.22 77.47)
 		)
 		(stroke
@@ -1428,16 +1189,6 @@
 			(type default)
 		)
 		(uuid "de4fecc5-9065-4a67-a8ae-d06e9f8c117e")
-	)
-	(wire
-		(pts
-			(xy 109.22 123.19) (xy 106.68 123.19)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e3bab4b4-1a35-4710-b7a8-960d001fbe85")
 	)
 	(wire
 		(pts
@@ -1619,7 +1370,7 @@
 				)
 			)
 		)
-		(property "Value" "BL-HBGR32L-3-TRB-8"
+		(property "Value" "SK9822"
 			(at 228.6 118.11 0)
 			(effects
 				(font
@@ -1627,7 +1378,7 @@
 				)
 			)
 		)
-		(property "Footprint" "BL-HBGR32L-3-TRB-8_AMB"
+		(property "Footprint" "LED_SMD:LED_RGB_5050-6"
 			(at 208.28 125.73 0)
 			(effects
 				(font
@@ -1637,7 +1388,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "BL-HBGR32L-3-TRB-8"
+		(property "Datasheet" "https://www.digikey.be/htmldatasheets/production/1843597/0/0/1/sk9822.html"
 			(at 208.28 125.73 0)
 			(effects
 				(font
@@ -1648,6 +1399,15 @@
 			)
 		)
 		(property "Description" ""
+			(at 208.28 125.73 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC Part #" "C2829089"
 			(at 208.28 125.73 0)
 			(effects
 				(font
@@ -1833,7 +1593,7 @@
 				)
 			)
 		)
-		(property "Value" "BL-HBGR32L-3-TRB-8"
+		(property "Value" "SK9822"
 			(at 228.6 22.86 0)
 			(effects
 				(font
@@ -1841,7 +1601,7 @@
 				)
 			)
 		)
-		(property "Footprint" "BL-HBGR32L-3-TRB-8_AMB"
+		(property "Footprint" "LED_SMD:LED_RGB_5050-6"
 			(at 208.28 30.48 0)
 			(effects
 				(font
@@ -1851,7 +1611,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "BL-HBGR32L-3-TRB-8"
+		(property "Datasheet" "https://www.digikey.be/htmldatasheets/production/1843597/0/0/1/sk9822.html"
 			(at 208.28 30.48 0)
 			(effects
 				(font
@@ -1862,6 +1622,15 @@
 			)
 		)
 		(property "Description" ""
+			(at 208.28 30.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC Part #" "C2829089"
 			(at 208.28 30.48 0)
 			(effects
 				(font
@@ -1898,154 +1667,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Switch:SW_DPST")
-		(at 101.6 49.53 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "23467fd1-caf0-4be0-bc96-c6d8077073b0")
-		(property "Reference" "SW1"
-			(at 101.6 40.64 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "SW_DPST"
-			(at 101.6 43.18 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Button_Switch_SMD:SW_SPST_PTS645"
-			(at 101.6 49.53 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 101.6 49.53 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Double Pole Single Throw (DPST) Switch"
-			(at 101.6 49.53 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "f862ad42-7e4d-4fc2-910e-990876ef705c")
-		)
-		(pin "2"
-			(uuid "fb88be92-3a48-4bbf-bff1-e133431abb38")
-		)
-		(pin "3"
-			(uuid "975f28e3-7225-43b9-8f00-2decee6246fa")
-		)
-		(pin "4"
-			(uuid "819f90e4-b1af-4bad-b667-e402cf8ec44f")
-		)
-		(instances
-			(project "Simon-SPI"
-				(path "/32731fb9-c4d6-4541-adc1-72b58eaa75c6/bf84aec3-5fa3-407b-80d1-fb026171526c"
-					(reference "SW1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Switch:SW_DPST")
-		(at 101.6 74.93 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "30c9ef73-895a-4013-b77f-f1b69503eb3d")
-		(property "Reference" "SW2"
-			(at 101.6 66.04 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "SW_DPST"
-			(at 101.6 68.58 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Button_Switch_SMD:SW_SPST_PTS645"
-			(at 101.6 74.93 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 101.6 74.93 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Double Pole Single Throw (DPST) Switch"
-			(at 101.6 74.93 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "d21cadc8-3308-43fc-b2cd-ea3c1fd92bad")
-		)
-		(pin "2"
-			(uuid "49f7d4a5-a585-440a-addd-e5f26905d11c")
-		)
-		(pin "3"
-			(uuid "6132a52f-4081-4dbf-8c11-cfb65571a270")
-		)
-		(pin "4"
-			(uuid "6d92b09e-c024-402d-aaac-c3ceac2ffadc")
-		)
-		(instances
-			(project "Simon-SPI"
-				(path "/32731fb9-c4d6-4541-adc1-72b58eaa75c6/bf84aec3-5fa3-407b-80d1-fb026171526c"
-					(reference "SW2")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "ELEC327-Kicad:BL-HBGR32L-3-TRB-8")
 		(at 208.28 93.98 0)
 		(unit 1)
@@ -2063,7 +1684,7 @@
 				)
 			)
 		)
-		(property "Value" "BL-HBGR32L-3-TRB-8"
+		(property "Value" "SK9822"
 			(at 228.6 86.36 0)
 			(effects
 				(font
@@ -2071,7 +1692,7 @@
 				)
 			)
 		)
-		(property "Footprint" "BL-HBGR32L-3-TRB-8_AMB"
+		(property "Footprint" "LED_SMD:LED_RGB_5050-6"
 			(at 208.28 93.98 0)
 			(effects
 				(font
@@ -2081,7 +1702,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "BL-HBGR32L-3-TRB-8"
+		(property "Datasheet" "https://www.digikey.be/htmldatasheets/production/1843597/0/0/1/sk9822.html"
 			(at 208.28 93.98 0)
 			(effects
 				(font
@@ -2092,6 +1713,15 @@
 			)
 		)
 		(property "Description" ""
+			(at 208.28 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC Part #" "C2829089"
 			(at 208.28 93.98 0)
 			(effects
 				(font
@@ -2194,33 +1824,33 @@
 		)
 	)
 	(symbol
-		(lib_id "Switch:SW_DPST")
-		(at 101.6 100.33 0)
+		(lib_id "Switch:SW_SPST")
+		(at 101.6 77.47 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
-		(uuid "7029287c-2030-4d39-ae45-a96c39dc1b68")
-		(property "Reference" "SW3"
-			(at 101.6 91.44 0)
+		(uuid "93362126-9f2b-4d4a-8efc-688ffc80589f")
+		(property "Reference" "SW2"
+			(at 101.6 71.12 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "SW_DPST"
-			(at 101.6 93.98 0)
+		(property "Value" "SW_SPST"
+			(at 101.6 73.66 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "Button_Switch_SMD:SW_SPST_PTS645"
-			(at 101.6 100.33 0)
+		(property "Footprint" "Button_Switch_SMD:SW_SPST_PTS647_Sx38"
+			(at 101.6 77.47 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2229,7 +1859,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 101.6 100.33 0)
+			(at 101.6 77.47 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2237,8 +1867,26 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Double Pole Single Throw (DPST) Switch"
-			(at 101.6 100.33 0)
+		(property "Description" "Single Pole Single Throw (SPST) switch"
+			(at 101.6 77.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "C2799279"
+			(at 101.6 77.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC Part #" "C2799279"
+			(at 101.6 77.47 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2247,21 +1895,187 @@
 			)
 		)
 		(pin "1"
-			(uuid "57b40029-c9ab-44fa-8858-3b76bf149b64")
+			(uuid "bc565af3-e588-4e14-afc8-194f3bffddfe")
 		)
 		(pin "2"
-			(uuid "e781d38e-17c7-4c8a-855c-60045f050cf0")
-		)
-		(pin "3"
-			(uuid "cf1f896b-f4b6-45d2-aaf1-16b452c8fd84")
-		)
-		(pin "4"
-			(uuid "172914aa-dffc-41c0-b2db-93d4b439007f")
+			(uuid "b5387c05-252e-4928-9cb0-5c6032ac8d1f")
 		)
 		(instances
-			(project "Simon-SPI"
+			(project "Simon-2025-JLC"
+				(path "/32731fb9-c4d6-4541-adc1-72b58eaa75c6/bf84aec3-5fa3-407b-80d1-fb026171526c"
+					(reference "SW2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Switch:SW_SPST")
+		(at 101.6 102.87 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "9c6b21b7-2ac3-40d4-9a4b-fc38b417d59f")
+		(property "Reference" "SW3"
+			(at 101.6 96.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SW_SPST"
+			(at 101.6 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Button_Switch_SMD:SW_SPST_PTS647_Sx38"
+			(at 101.6 102.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 101.6 102.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Single Pole Single Throw (SPST) switch"
+			(at 101.6 102.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "C2799279"
+			(at 101.6 102.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC Part #" "C2799279"
+			(at 101.6 102.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "269040b4-303d-422a-be8a-f84f79e333c4")
+		)
+		(pin "2"
+			(uuid "057bfaa7-497a-4b4a-9bd3-af4cd2976b1c")
+		)
+		(instances
+			(project "Simon-2025-JLC"
 				(path "/32731fb9-c4d6-4541-adc1-72b58eaa75c6/bf84aec3-5fa3-407b-80d1-fb026171526c"
 					(reference "SW3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Switch:SW_SPST")
+		(at 101.6 52.07 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "c4051a33-18c9-4094-be2e-b9db09c20df5")
+		(property "Reference" "SW1"
+			(at 101.6 45.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SW_SPST"
+			(at 101.6 48.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Button_Switch_SMD:SW_SPST_PTS647_Sx38"
+			(at 101.6 52.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 101.6 52.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Single Pole Single Throw (SPST) switch"
+			(at 101.6 52.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "C2799279"
+			(at 101.6 52.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC Part #" "C2799279"
+			(at 101.6 52.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "4043acc2-96d6-46f5-8576-49ddc67df7d4")
+		)
+		(pin "2"
+			(uuid "3f380bff-043c-447b-999b-2fd8b52cdd15")
+		)
+		(instances
+			(project "Simon-2025-JLC"
+				(path "/32731fb9-c4d6-4541-adc1-72b58eaa75c6/bf84aec3-5fa3-407b-80d1-fb026171526c"
+					(reference "SW1")
 					(unit 1)
 				)
 			)
@@ -2285,7 +2099,7 @@
 				)
 			)
 		)
-		(property "Value" "BL-HBGR32L-3-TRB-8"
+		(property "Value" "SK9822"
 			(at 228.6 54.61 0)
 			(effects
 				(font
@@ -2293,7 +2107,7 @@
 				)
 			)
 		)
-		(property "Footprint" "BL-HBGR32L-3-TRB-8_AMB"
+		(property "Footprint" "LED_SMD:LED_RGB_5050-6"
 			(at 208.28 62.23 0)
 			(effects
 				(font
@@ -2303,7 +2117,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "BL-HBGR32L-3-TRB-8"
+		(property "Datasheet" "https://www.digikey.be/htmldatasheets/production/1843597/0/0/1/sk9822.html"
 			(at 208.28 62.23 0)
 			(effects
 				(font
@@ -2314,6 +2128,15 @@
 			)
 		)
 		(property "Description" ""
+			(at 208.28 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC Part #" "C2829089"
 			(at 208.28 62.23 0)
 			(effects
 				(font
@@ -2350,33 +2173,33 @@
 		)
 	)
 	(symbol
-		(lib_id "Switch:SW_DPST")
-		(at 101.6 125.73 0)
+		(lib_id "Switch:SW_SPST")
+		(at 101.6 128.27 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
-		(uuid "f067e847-799b-4eec-b28f-7bcbf0777ca4")
+		(uuid "d9861519-79f7-4e42-a5b2-e6c1e8715fe7")
 		(property "Reference" "SW4"
-			(at 101.6 116.84 0)
+			(at 101.6 121.92 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "SW_DPST"
-			(at 101.6 119.38 0)
+		(property "Value" "SW_SPST"
+			(at 101.6 124.46 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "Button_Switch_SMD:SW_SPST_PTS645"
-			(at 101.6 125.73 0)
+		(property "Footprint" "Button_Switch_SMD:SW_SPST_PTS647_Sx38"
+			(at 101.6 128.27 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2385,7 +2208,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 101.6 125.73 0)
+			(at 101.6 128.27 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2393,8 +2216,26 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Double Pole Single Throw (DPST) Switch"
-			(at 101.6 125.73 0)
+		(property "Description" "Single Pole Single Throw (SPST) switch"
+			(at 101.6 128.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "C2799279"
+			(at 101.6 128.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC Part #" "C2799279"
+			(at 101.6 128.27 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2403,19 +2244,13 @@
 			)
 		)
 		(pin "1"
-			(uuid "21a081cd-3d5d-4924-b5a9-34ab826e5034")
+			(uuid "e48d7b70-65cf-4541-bf46-a302eface242")
 		)
 		(pin "2"
-			(uuid "65236582-b822-4331-93bf-49566b4979b9")
-		)
-		(pin "3"
-			(uuid "9d41a2c5-9633-4a64-a136-fc1d43121873")
-		)
-		(pin "4"
-			(uuid "ce880140-e1b3-4cdf-8b73-576d9ada1d00")
+			(uuid "981d0ca2-c5a9-4fc9-a700-c4dddcf31959")
 		)
 		(instances
-			(project "Simon-SPI"
+			(project "Simon-2025-JLC"
 				(path "/32731fb9-c4d6-4541-adc1-72b58eaa75c6/bf84aec3-5fa3-407b-80d1-fb026171526c"
 					(reference "SW4")
 					(unit 1)
