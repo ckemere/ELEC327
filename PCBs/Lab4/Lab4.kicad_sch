@@ -2068,6 +2068,18 @@
 		(uuid "066f63bb-ec39-442d-92b7-a1d9e68dabd2")
 	)
 	(junction
+		(at 154.94 88.9)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "150bbcdb-d51b-4760-bdd1-567aa1c262bd")
+	)
+	(junction
+		(at 154.94 109.22)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "55284ba4-4255-4e74-8876-5284bd9c7fcd")
+	)
+	(junction
 		(at 179.07 88.9)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2801,6 +2813,72 @@
 			(project "Lab4"
 				(path "/dbd6c5bc-048d-4ff3-939b-420beceeb6aa"
 					(reference "#PWR010")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 154.94 109.22 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "19582874-0904-455a-823f-189e492ccbb7")
+		(property "Reference" "#PWR014"
+			(at 154.94 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 154.94 114.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 154.94 109.22 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 154.94 109.22 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 154.94 109.22 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "e18f2a66-b533-48cc-9628-df6564b6e257")
+		)
+		(instances
+			(project "Lab4"
+				(path "/dbd6c5bc-048d-4ff3-939b-420beceeb6aa"
+					(reference "#PWR014")
 					(unit 1)
 				)
 			)
@@ -4255,6 +4333,72 @@
 			(project "Lab4"
 				(path "/dbd6c5bc-048d-4ff3-939b-420beceeb6aa"
 					(reference "SW2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:VDD")
+		(at 154.94 88.9 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "f63a82e3-7243-48c1-a4f9-4ee81415ed9e")
+		(property "Reference" "#PWR05"
+			(at 154.94 92.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "VDD"
+			(at 154.94 83.82 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 154.94 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 154.94 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"VDD\""
+			(at 154.94 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "e09bde84-e62d-437d-a3e3-7ec40bf3102d")
+		)
+		(instances
+			(project "Lab4"
+				(path "/dbd6c5bc-048d-4ff3-939b-420beceeb6aa"
+					(reference "#PWR05")
 					(unit 1)
 				)
 			)
