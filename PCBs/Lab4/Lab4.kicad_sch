@@ -3801,7 +3801,7 @@
 				)
 			)
 		)
-		(property "Footprint" "LED_THT:LED_D5.0mm-4_RGB"
+		(property "Footprint" "LED_THT:LED_D5.0mm-4_RGB_Staggered_Pins"
 			(at 57.15 134.62 0)
 			(effects
 				(font
