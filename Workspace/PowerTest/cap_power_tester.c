@@ -107,10 +107,11 @@ int main(void)
     for (int j = 0; j < 12; j++) {
         all_leds = all_leds | red_led_pins[j];
         all_leds = all_leds | yellow_led_pins[j];
+        DL_GPIO_clearPins(GPIO_LEDS_PORT, all_leds);
+        delay_cycles(320);
     }
 
     // All leds on.
-    DL_GPIO_clearPins(GPIO_LEDS_PORT, all_leds);
 
     wait_for_button_release();
 
